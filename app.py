@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import json
 import os
 from datetime import datetime
+from import_table import CourseManager
 
 app = Flask(__name__)
 
@@ -53,6 +54,18 @@ def index():
 def map_page():
     next_course = get_next_course()
     return render_template('map.html', next_course=next_course)
+
+@app.route('/import_course', methods=['POST'])
+def import_course():
+    course_text = request.form.get('course_text')
+    if course_text:
+        manager = CourseManager()
+        try:
+            json_data = manager.process_user_text(course_text)
+            return json.dumps(json_data, ensure_ascii=False, indent=4)
+        except Exception as e:
+            return f"导入失败：{str(e)}"
+    return "未提供课表文本。"
 
 if __name__ == '__main__':
     app.run(debug=True)

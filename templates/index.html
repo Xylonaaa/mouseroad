@@ -107,9 +107,13 @@
   </style>
 </head>
 <body>
+
   <header>
     <h1>鼠路</h1>
-    <button type="button" class="btn btn-custom shadow-sm">导入课表</button>
+    <form id="importForm" action="/import_course" method="post">
+      <textarea name="course_text" id="course_text" style="display: none;"></textarea>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="submitForm()">导入课表</button>
+    </form>
   </header>
   <div class="nav">
     <button type="button" class="btn btn-custom shadow-sm">课表</button>
@@ -164,5 +168,17 @@
       </tbody>
     </table>
   </div>
+
+<script>
+    function submitForm() {
+      // 这里可以添加逻辑，从用户输入或其他地方获取课表文本
+      const courseText = prompt('请输入课表文本：');
+      if (courseText) {
+        document.getElementById('course_text').value = courseText;
+        document.getElementById('importForm').submit();
+      }
+    }
+  </script>
+
 </body>
 </html>
