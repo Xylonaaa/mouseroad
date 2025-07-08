@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鼠路 - 课表首页</title>
+  <title>鼠路 - 課表首頁</title>
   <style>
     body {
       margin: 0;
@@ -65,32 +65,41 @@
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
-      background-color: #fff;
-      border-top: 1px solid #ccc;
-      position: fixed;
-      bottom: 0;
+      background-color: red;
       width: 100%;
     }
-    .nav div {
+    .nav button {
       text-align: center;
       font-size: 14px;
-      color: #333;
+      color: white;
+      background-color: red;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.9eb082785fdf2ef9f02a5234c4aa3bdb?rik=1NE7DM1OnLazoA&riu=http%3a%2f%2foss.vismatrix.cn%2fuploads%2f20200921%2fFpXM-6xA6f_0ponloVtciDIF0__-.png&ehk=dB9O9tcuqUZ8b%2fPEcxCQP59JKLrTraoHNxz8vYQOJLE%3d&risl=&pid=ImgRaw&r=0" alt="校徽"> <!-- 可替換為實際圖片路徑 -->
+    <img src="school_logo.png" alt="校徽"> <!-- 可替換為實際圖片路徑 -->
     <h1>鼠路</h1>
-    <button>导入课表</button>
+    <button>導入課表</button>
   </header>
+
+  <div class="nav">
+    <button>課表</button>
+    <button>地圖</button>
+    <button>提醒</button>
+    <button>個人中心</buttonv>
+  </div>
 
   <div class="timetable">
     <table>
       <thead>
         <tr>
-          <th>节次</th>
+          <th>節次</th>
           <th>一</th>
           <th>二</th>
           <th>三</th>
@@ -101,7 +110,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1<br>08:00<br>~08:45</td><td colspan="7" class="placeholder">课表待导入</td></tr>
+        <tr><td>1<br>08:00<br>~08:45</td><td colspan="7" class="placeholder">課表待傳入</td></tr>
         <tr><td>2<br>08:55<br>~09:40</td><td colspan="7"></td></tr>
         <tr><td>3<br>09:50<br>~10:35</td><td colspan="7"></td></tr>
         <tr><td>4<br>10:45<br>~11:30</td><td colspan="7"></td></tr>
@@ -114,12 +123,7 @@
     </table>
   </div>
 
-  <div class="nav">
-    <div>课表</div>
-    <div>地图</div>
-    <div>提醒</div>
-    <div>个人中心</div>
-  </div>
+  
 
 </body>
 </html>
