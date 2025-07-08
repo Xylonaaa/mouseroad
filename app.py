@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import json
 import os
 from datetime import datetime
@@ -48,7 +48,14 @@ def index():
                 break
         if not address and building_name:
             address = '未找到对应的楼名。'
-    return render_template('index.html', building_name=building_name, address=address)
+    # 读取课表数据
+    schedule = None
+    try:
+        with open('data/data.json', encoding='utf-8') as f:
+            schedule = json.load(f)
+    except Exception:
+        schedule = None
+    return render_template('index.html', building_name=building_name, address=address, schedule=schedule)
 
 @app.route('/map')
 def map_page():
@@ -61,8 +68,9 @@ def import_course():
     if course_text:
         manager = CourseManager()
         try:
-            json_data = manager.process_user_text(course_text)
-            return json.dumps(json_data, ensure_ascii=False, indent=4)
+            manager.process_user_text(course_text)
+            # 成功后重定向到首页并带上success参数
+            return redirect(url_for('index', success=1))
         except Exception as e:
             return f"导入失败：{str(e)}"
     return "未提供课表文本。"

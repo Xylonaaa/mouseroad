@@ -20,31 +20,28 @@ class CourseManager:
             f.write(text)
     
     def parse_course_text(self) -> List[Dict]:
-        """从TXT文件解析课程数据"""
+        """从TXT文件解析课程数据，支持无空行分隔的课表格式"""
         if not os.path.exists(self.txt_path):
             raise FileNotFoundError(f"找不到文件: {self.txt_path}")
-        
         with open(self.txt_path, 'r', encoding='utf-8') as f:
             text = f.read()
-        
         courses = []
         current_weekday = None
-        
-        # 按行分割文本并去除空行
         lines = [line.strip() for line in text.split('\n') if line.strip()]
-        
-        for i, line in enumerate(lines):
+        i = 0
+        while i < len(lines):
+            line = lines[i]
             # 检查是否为星期行
             weekday_match = re.match(r'^(星期[一二三四五六日])$', line)
             if weekday_match:
                 weekday_text = weekday_match.group(1)
                 current_weekday = self.weekday_map.get(weekday_text)
+                i += 1
                 continue
-            
             # 如果当前没有有效的星期，跳过后续解析
             if current_weekday is None:
+                i += 1
                 continue
-            
             # 检查是否为节次和周次行
             time_week_match = re.match(r'^(\d+)-(\d+)节 \((\d+)-(\d+)周\)$', line)
             if time_week_match:
@@ -52,15 +49,12 @@ class CourseManager:
                 end_section = int(time_week_match.group(2))
                 start_week = int(time_week_match.group(3))
                 end_week = int(time_week_match.group(4))
-                
                 # 下一行应该是课程名称
                 if i + 1 < len(lines):
                     course_name = lines[i + 1].strip()
-                    
                     # 再下一行应该是教室
-                    if i + 2 < len(lines) and not re.match(r'^(星期[一二三四五六日])$', lines[i + 2]):
+                    if i + 2 < len(lines):
                         location = lines[i + 2].strip()
-                        
                         # 创建课程数据
                         course = {
                             'course_name': course_name,
@@ -71,27 +65,31 @@ class CourseManager:
                             'weeks': f"{start_week}-{end_week}"
                         }
                         courses.append(course)
-        
+                        i += 3
+                        continue
+            i += 1
         return courses
     
     def convert_to_json(self, courses: List[Dict]) -> Dict:
-        """将课程列表转换为结构化JSON数据"""
+        """将课程列表转换为结构化JSON数据，保证每天课程按节次排序"""
         # 按星期分组
         grouped_data = {i: [] for i in range(1, 8)}  # 1-7对应周一到周日
-        
         for course in courses:
             day = course['day_of_week']
-            grouped_data[day].append({
-                'course_name': course['course_name'],
-                'location': course['location'],
-                'time': f"{course['start_section']}-{course['end_section']}节",
-                'weeks': course['weeks']
-            })
-        
+            grouped_data[day].append(course)
+        # 每天按 start_section 排序
+        for day in grouped_data:
+            grouped_data[day].sort(key=lambda x: x['start_section'])
         # 转换为星期文本
         weekday_text_map = {v: k for k, v in self.weekday_map.items()}
-        result = {weekday_text_map[day]: courses for day, courses in grouped_data.items() if courses}
-        
+        result = {weekday_text_map[day]: [
+            {
+                'course_name': c['course_name'],
+                'location': c['location'],
+                'time': f"{c['start_section']}-{c['end_section']}节",
+                'weeks': c['weeks']
+            } for c in grouped_data[day]
+        ] for day in grouped_data if grouped_data[day]}
         return result
     
     def save_to_json(self, data: Dict) -> None:

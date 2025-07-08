@@ -123,6 +123,9 @@
   </div>
   <div class="timetable">
     <div class="watermark"></div>
+    {% if not schedule %}
+      <div class="alert alert-danger" style="margin-bottom:10px;">课表导入失败，请检查格式</div>
+    {% endif %}
     <table>
       <thead>
         <tr>
@@ -137,34 +140,34 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1<br>08:00<br>~08:45</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-        </tr>
-        <tr>
-          <td>2<br>08:55<br>~09:40</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-          <td class="timetable-placeholder">课表待导入</td>
-        </tr>
-        <!-- 其他行保持不变 -->
-        <tr><td>3<br>09:50<br>~10:35</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>4<br>10:45<br>~11:30</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>5<br>11:40<br>~12:25</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>6<br>13:30<br>~14:15</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>7<br>14:25<br>~15:10</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>8<br>15:20<br>~16:05</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
-        <tr><td>9<br>16:15<br>~17:00</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        {% set section_times = [
+          '08:00~08:45', '08:55~09:40', '09:50~10:35', '10:45~11:30', '11:40~12:25',
+          '13:30~14:15', '14:25~15:10', '15:20~16:05', '16:15~17:00'
+        ] %}
+        {% for i in range(1, 10) %}
+          <tr>
+            <td>{{ i }}<br>{{ section_times[i-1] }}</td>
+            {% for day in ['星期一','星期二','星期三','星期四','星期五','星期六','星期日'] %}
+              <td>
+                {% if schedule and schedule.get(day) %}
+                  {% set found = false %}
+                  {% for course in schedule[day] %}
+                    {% set section_range = course.time.split('节')[0] %}
+                    {% set start_section = section_range.split('-')[0]|int %}
+                    {% set end_section = section_range.split('-')[1]|int %}
+                    {% if i >= start_section and i <= end_section and not found %}
+                      {{ course.course_name }}<br>{{ course.location }}<br>{{ course.weeks }}
+                      {% set found = true %}
+                    {% endif %}
+                  {% endfor %}
+                  {% if not found %}<span class="timetable-placeholder">课表待导入</span>{% endif %}
+                {% else %}
+                  <span class="timetable-placeholder">课表待导入</span>
+                {% endif %}
+              </td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -177,6 +180,10 @@
         document.getElementById('course_text').value = courseText;
         document.getElementById('importForm').submit();
       }
+    }
+    // 导入成功后弹窗提示
+    if (window.location.search.indexOf('success=1') !== -1) {
+      alert('课表导入成功！');
     }
   </script>
 
