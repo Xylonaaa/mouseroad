@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人中心 - 鼠路</title>
+  <!-- 引入 Bootstrap 样式 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: sans-serif;
+    }
+    .profile-container {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .profile-title {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #a00000;
+    }
+    .info-item {
+      margin: 15px 0;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .btn-logout {
+      background-color: #a00000;
+      color: white;
+      margin-top: 20px;
+    }
+    .btn-logout:hover {
+      background-color: #8b0000;
+      color: white;
+    }
+    .nav {
+      background-color: #a00000;
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .nav button {
+      background-color: #a00000;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      margin: 0 5px;
+    }
+    .nav button:hover {
+      background-color: white;
+      color: #a00000;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 导航栏（保持与首页一致） -->
+  <div class="nav d-flex justify-content-center">
+    <button onclick="window.location.href='index.html'">课表</button>
+    <button onclick="window.location.href='/map'">地图</button>
+    <button onclick="window.location.href='reminder.html'">提醒</button>
+    <button onclick="window.location.href='profile.html'">个人中心</button>
+  </div>
+
+  <div class="profile-container">
+    <h2 class="profile-title">个人信息</h2>
+    
+    <!-- 登录状态下显示账号密码 -->
+    <div id="profileInfo">
+      <div class="info-item">
+        <strong>账号：</strong> <span id="showUsername"></span>
+      </div>
+      <div class="info-item">
+        <strong>密码：</strong> <span id="showPassword"></span> <!-- 实际项目中密码应加密显示 -->
+      </div>
+      <button class="btn btn-logout" onclick="logout()">退出登录</button>
+    </div>
+  </div>
+
+  <script>
+    // 页面加载时验证登录状态
+    window.onload = function() {
+      checkLoginStatus();
+    };
+
+    // 验证登录状态
+    function checkLoginStatus() {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (isLoggedIn !== 'true') {
+        // 未登录则跳转至登录页
+        window.location.href = 'login.html';
+      } else {
+        // 已登录则显示账号密码
+        document.getElementById('showUsername').textContent = localStorage.getItem('username');
+        document.getElementById('showPassword').textContent = localStorage.getItem('password'); // 仅演示用，实际需处理
+      }
+    }
+
+    // 退出登录
+    function logout() {
+      // 清除本地存储的登录信息
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('username');
+      localStorage.removeItem('password');
+      // 跳转至登录页
+      window.location.href = 'login.html';
+    }
+  </script>
+</body>
+</html>
