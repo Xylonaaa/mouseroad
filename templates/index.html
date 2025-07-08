@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>鼠路 - 课表首页</title>
+  <!-- 引入Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -23,7 +25,7 @@
     
     /* 水印置于最上层的关键样式 */
     .watermark {
-      position: absolute; /* 随课表滚动 */
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -32,84 +34,91 @@
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.1; /* 建议保持低透明度，避免遮挡内容 */
-      pointer-events: none; /* 允许点击穿透水印操作下方元素 */
-      z-index: 9999; /* 极高的层级值，确保在所有元素上方 */
+      opacity: 0.1 !important; /* 强制低透明度 */
+      pointer-events: none;
+      z-index: 9999 !important; /* 确保最高层级 */
     }
     
     header {
-      background-color: #a00000;
-      color: white;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 100; /* 低于水印层级 */
+      background-color: #a00000 !important;
+      color: white !important;
+      padding: 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      position: relative !important;
+      z-index: 100 !important;
     }
     
     .nav {
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      background-color: red;
-      width: 100%;
-      position: relative;
-      z-index: 100; /* 低于水印层级 */
+      display: flex !important;
+      justify-content: space-around !important;
+      padding: 10px 0 !important;
+      background-color: #a00000 !important;
+      width: 100% !important;
+      position: relative !important;
+      z-index: 100 !important;
     }
     
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: center;
-      position: relative;
-      z-index: 100; /* 低于水印层级 */
+    .timetable table {
+      width: 100% !important;
+      border-collapse: collapse !important;
+      text-align: center !important;
+      position: relative !important;
+      z-index: 100 !important;
     }
     
-    th, td {
-      border: 1px solid #ddd;
-      padding: 6px;
-      min-width: 70px;
-      height: 80px;
+    .timetable th, .timetable td {
+      border: 1px solid #ddd !important;
+      padding: 6px !important;
+      min-width: 70px !important;
+      height: 80px !important;
     }
     
-    th {
-      background-color: #eee;
+    .timetable th {
+      background-color: #eee !important;
     }
     
-    .placeholder {
-      text-align: center;
-      color: #aaa;
+    /* 重命名类名避免冲突 */
+    .timetable-placeholder {
+      text-align: center !important;
+      color: #aaa !important;
     }
-    
-    .nav button {
-      text-align: center;
-      font-size: 14px;
+
+    button.btn-custom {        
+      background-color: #a00000; /* 初始颜色 */ 
       color: white;
-      background-color: red;
       border: none;
-      padding: 5px 10px;
-      border-radius: 5px;
-      cursor: pointer;
+      font-size: 30px;
+    }
+    
+    /* 鼠标悬停时变为白色 */
+    button.btn-custom:hover {
+      background-color: white;
+      color: #a00000; /* 文字变为蓝色 */
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); /* 添加阴影 */
+    }
+    
+    /* 点击时变为粉色 */
+    button.btn-custom:active {
+      background-color: #ff69b4; /* 粉色 */
+      color: white;
     }
   </style>
 </head>
 <body>
-
   <header>
     <h1>鼠路</h1>
-    <button>导入课表</button>
+    <button type="button" class="btn btn-custom shadow-sm">导入课表</button>
   </header>
-
   <div class="nav">
-    <button>課表</button>
-    <button onclick="window.location.href='/map'">地圖</button>
-    <button>提醒</button>
-    <button>個人中心</button>
+    <button type="button" class="btn btn-custom shadow-sm">课表</button>
+    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
+    <button type="button" class="btn btn-custom shadow-sm">提醒</button>
+    <button type="button" class="btn btn-custom shadow-sm">个人中心</button>
   </div>
-
   <div class="timetable">
-    <div class="watermark"></div> <!-- 水印在最上层 -->
+    <div class="watermark"></div>
     <table>
       <thead>
         <tr>
@@ -126,35 +135,34 @@
       <tbody>
         <tr>
           <td>1<br>08:00<br>~08:45</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">課表待傳入</td>
-          <td class="placeholder">課表待傳入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
         </tr>
         <tr>
           <td>2<br>08:55<br>~09:40</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
-          <td class="placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
+          <td class="timetable-placeholder">课表待导入</td>
         </tr>
         <!-- 其他行保持不变 -->
-        <tr><td>3<br>09:50<br>~10:35</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>4<br>10:45<br>~11:30</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>5<br>11:40<br>~12:25</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>6<br>13:30<br>~14:15</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>7<br>14:25<br>~15:10</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>8<br>15:20<br>~16:05</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
-        <tr><td>9<br>16:15<br>~17:00</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>3<br>09:50<br>~10:35</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>4<br>10:45<br>~11:30</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>5<br>11:40<br>~12:25</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>6<br>13:30<br>~14:15</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>7<br>14:25<br>~15:10</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>8<br>15:20<br>~16:05</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
+        <tr><td>9<br>16:15<br>~17:00</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td><td class="timetable-placeholder">课表待导入</td></tr>
       </tbody>
     </table>
   </div>
-
 </body>
 </html>
