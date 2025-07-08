@@ -3,38 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>鼠路 - 課表首頁</title>
+  <title>鼠路 - 课表首页</title>
   <style>
     body {
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
     }
-    header {
-      background-color: #a00000;
-      color: white;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header img {
-      height: 40px;
-    }
-    header h1 {
-      flex: 1;
-      text-align: center;
-      font-size: 24px;
-      margin: 0;
-    }
-    header button {
-      background-color: white;
-      color: #a00000;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+    
     .timetable {
       overflow-x: auto;
       background-color: white;
@@ -42,32 +18,70 @@
       border-radius: 8px;
       padding: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative; /* 作为水印的父容器 */
     }
-    table {
+    
+    /* 水印置于最上层的关键样式 */
+    .watermark {
+      position: absolute; /* 随课表滚动 */
+      top: 0;
+      left: 0;
       width: 100%;
-      border-collapse: collapse;
-      text-align: center;
+      height: 100%;
+      background-image: url('https://ts1.tc.mm.bing.net/th/id/R-C.9eb082785fdf2ef9f02a5234c4aa3bdb?rik=1NE7DM1OnLazoA&riu=http%3a%2f%2foss.vismatrix.cn%2fuploads%2f20200921%2fFpXM-6xA6f_0ponloVtciDIF0__-.png&ehk=dB9O9tcuqUZ8b%2fPEcxCQP59JKLrTraoHNxz8vYQOJLE%3d&risl=&pid=ImgRaw&r=0');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.1; /* 建议保持低透明度，避免遮挡内容 */
+      pointer-events: none; /* 允许点击穿透水印操作下方元素 */
+      z-index: 9999; /* 极高的层级值，确保在所有元素上方 */
     }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 6px;
-      min-width: 70px;
+    
+    header {
+      background-color: #a00000;
+      color: white;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 100; /* 低于水印层级 */
     }
-    th {
-      background-color: #eee;
-    }
-    .placeholder {
-      text-align: center;
-      color: #aaa;
-      padding: 20px 0;
-    }
+    
     .nav {
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
       background-color: red;
       width: 100%;
+      position: relative;
+      z-index: 100; /* 低于水印层级 */
     }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      position: relative;
+      z-index: 100; /* 低于水印层级 */
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      min-width: 70px;
+      height: 80px;
+    }
+    
+    th {
+      background-color: #eee;
+    }
+    
+    .placeholder {
+      text-align: center;
+      color: #aaa;
+    }
+    
     .nav button {
       text-align: center;
       font-size: 14px;
@@ -83,23 +97,23 @@
 <body>
 
   <header>
-    <img src="school_logo.png" alt="校徽"> <!-- 可替換為實際圖片路徑 -->
     <h1>鼠路</h1>
-    <button>導入課表</button>
+    <button>导入课表</button>
   </header>
 
   <div class="nav">
-    <button>課表</button>
-    <button>地圖</button>
+    <button>课表</button>
+    <button>地图</button>
     <button>提醒</button>
-    <button>個人中心</buttonv>
+    <button>个人中心</button>
   </div>
 
   <div class="timetable">
+    <div class="watermark"></div> <!-- 水印在最上层 -->
     <table>
       <thead>
         <tr>
-          <th>節次</th>
+          <th>节次</th>
           <th>一</th>
           <th>二</th>
           <th>三</th>
@@ -110,20 +124,37 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1<br>08:00<br>~08:45</td><td colspan="7" class="placeholder">課表待傳入</td></tr>
-        <tr><td>2<br>08:55<br>~09:40</td><td colspan="7"></td></tr>
-        <tr><td>3<br>09:50<br>~10:35</td><td colspan="7"></td></tr>
-        <tr><td>4<br>10:45<br>~11:30</td><td colspan="7"></td></tr>
-        <tr><td>5<br>11:40<br>~12:25</td><td colspan="7"></td></tr>
-        <tr><td>6<br>13:30<br>~14:15</td><td colspan="7"></td></tr>
-        <tr><td>7<br>14:25<br>~15:10</td><td colspan="7"></td></tr>
-        <tr><td>8<br>15:20<br>~16:05</td><td colspan="7"></td></tr>
-        <tr><td>9<br>16:15<br>~17:00</td><td colspan="7"></td></tr>
+        <tr>
+          <td>1<br>08:00<br>~08:45</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">課表待傳入</td>
+          <td class="placeholder">課表待傳入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+        </tr>
+        <tr>
+          <td>2<br>08:55<br>~09:40</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+          <td class="placeholder">课表待导入</td>
+        </tr>
+        <!-- 其他行保持不变 -->
+        <tr><td>3<br>09:50<br>~10:35</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>4<br>10:45<br>~11:30</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>5<br>11:40<br>~12:25</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>6<br>13:30<br>~14:15</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>7<br>14:25<br>~15:10</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>8<br>15:20<br>~16:05</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
+        <tr><td>9<br>16:15<br>~17:00</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td><td class="placeholder">课表待导入</td></tr>
       </tbody>
     </table>
   </div>
-
-  
 
 </body>
 </html>
