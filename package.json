@@ -1,0 +1,14 @@
+{
+  "name": "mouseroad-wetty-server",
+  "version": "1.0.0",
+  "description": "A local web-based bash (with git) terminal server using wetty.",
+  "main": "index.js",
+  "scripts": {
+    "start": "wetty --port 8000"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "wetty": "^2.7.2"
+  }
+} 
