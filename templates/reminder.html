@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -11,18 +12,25 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
+      padding-top: 100px; /* 为固定表头预留空间 */
     }
 
-    /* 导航栏和头部样式（与主页面完全一致） */
+    /* 头部导航横向排列样式 */
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #a00000;
+      z-index: 1000; /* 确保在最上层 */
+    }
+
     header {
-      background-color: #a00000 !important;
       color: white !important;
-      padding: 10px !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: space-between !important;
-      position: relative !important;
-      z-index: 100 !important;
+      padding: 15px !important;
+      text-align: center; /* 标题居中 */
+      font-size: 20px;
+      font-weight: bold;
     }
 
     .nav {
@@ -31,8 +39,13 @@
       padding: 10px 0 !important;
       background-color: #a00000 !important;
       width: 100% !important;
-      position: relative !important;
-      z-index: 100 !important;
+      flex-wrap: nowrap; /* 防止换行 */
+    }
+
+    .nav button {
+      flex: 1; /* 平均分配宽度 */
+      margin: 0 5px; /* 按钮间距 */
+      white-space: nowrap; /* 防止文字换行 */
     }
 
     /* 提醒设置容器样式 */
@@ -115,21 +128,29 @@
       color: #721c24;
       border: 1px solid #f5c6cb;
     }
+
+    /* 响应式调整 */
+    @media (max-width: 576px) {
+      .nav button {
+        font-size: 14px; /* 小屏幕缩小按钮文字 */
+        padding: 8px 5px;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- 头部导航（与主页面一致） -->
-  <header>
-    <h1>鼠路</h1>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='index.html'">返回首页</button>
-  </header>
+  <!-- 头部导航容器（横向排列） -->
+  <div class="header-container">
+    <header>
+      <h1>鼠路</h1>
+    </header>
 
-  <!-- 导航栏（与主页面一致） -->
-  <div class="nav">
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='index.html'">课表</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='reminder.html'">提醒</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='login.html'">个人中心</button>
+    <div class="nav">
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='index.html'">课表</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='reminder.html'">提醒</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='login.html'">个人中心</button>
+    </div>
   </div>
 
   <!-- 提醒设置内容 -->
@@ -138,17 +159,31 @@
 
     <form id="reminderForm">
       <div class="form-group">
-        <label class="form-label" for="minutes">提前提醒时间（分钟）</label>
+        <label class="form-label" for="leaveMinutes">出门提醒时间（分钟）</label>
         <input 
           type="number" 
-          id="minutes" 
+          id="leaveMinutes" 
           class="minutes-input" 
-          min="1"  <!-- 最小1分钟 -->
-          max="60" <!-- 最大60分钟 -->
+          min="1"  
+          max="60" 
           placeholder="请输入1-60之间的数字"
           required
         >
-        <small class="form-text text-muted">设置开课前多少分钟提醒（例如：输入10表示提前10分钟提醒）</small>
+        <small class="form-text text-muted">设置开课前多少分钟提醒出门（例如：输入10表示提前10分钟提醒）</small>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="classMinutes">上课提醒时间（分钟）</label>
+        <input 
+          type="number" 
+          id="classMinutes" 
+          class="minutes-input" 
+          min="1"  
+          max="60" 
+          placeholder="请输入1-60之间的数字"
+          required
+        >
+        <small class="form-text text-muted">设置开课前多少分钟提醒上课（例如：输入5表示提前5分钟提醒）</small>
       </div>
 
       <button type="submit" class="btn-custom">保存设置</button>
@@ -166,9 +201,19 @@
   <script>
     // 页面加载时读取已保存的设置
     window.onload = function() {
-      const savedMinutes = localStorage.getItem('reminderMinutes');
-      if (savedMinutes) {
-        document.getElementById('minutes').value = savedMinutes;
+      const savedLeaveMinutes = localStorage.getItem('leaveMinutes');
+      const savedClassMinutes = localStorage.getItem('classMinutes');
+      
+      if (savedLeaveMinutes) {
+        document.getElementById('leaveMinutes').value = savedLeaveMinutes;
+      } else {
+        document.getElementById('leaveMinutes').value = 10; // 默认10分钟
+      }
+      
+      if (savedClassMinutes) {
+        document.getElementById('classMinutes').value = savedClassMinutes;
+      } else {
+        document.getElementById('classMinutes').value = 5; // 默认5分钟
       }
     };
 
@@ -176,13 +221,14 @@
     document.getElementById('reminderForm').addEventListener('submit', function(e) {
       e.preventDefault(); // 阻止表单默认提交
 
-      const minutesInput = document.getElementById('minutes');
-      const minutes = parseInt(minutesInput.value);
+      const leaveMinutes = parseInt(document.getElementById('leaveMinutes').value);
+      const classMinutes = parseInt(document.getElementById('classMinutes').value);
 
       // 验证输入是否为1-60之间的数字
-      if (minutes >= 1 && minutes <= 60) {
+      if (leaveMinutes >= 1 && leaveMinutes <= 60 && classMinutes >= 1 && classMinutes <= 60) {
         // 保存设置到本地存储
-        localStorage.setItem('reminderMinutes', minutes);
+        localStorage.setItem('leaveMinutes', leaveMinutes);
+        localStorage.setItem('classMinutes', classMinutes);
         
         // 显示成功提示
         document.getElementById('successMessage').style.display = 'block';
