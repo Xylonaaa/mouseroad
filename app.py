@@ -3,12 +3,28 @@ import json
 import os
 from datetime import datetime
 from import_table import CourseManager
+import logging
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler()
+    ]
+)
 
 app = Flask(__name__)
 app.secret_key = 'mouseroadgogogoyeah250709'
 # 读取楼名与地址数据
-with open(os.path.join(os.path.dirname(__file__), 'location.json'), encoding='utf-8') as f:
-    locations = json.load(f)
+try:
+    with open(os.path.join(os.path.dirname(__file__), 'location.json'), encoding='utf-8') as f:
+        locations = json.load(f)
+    logging.info('成功读取 location.json 文件')
+except Exception as e:
+    logging.error(f'读取 location.json 文件时出错: {e}')
+
 
 def get_next_course():
     try:
@@ -36,6 +52,7 @@ def get_next_course():
                     }
         return None
     except Exception as e:
+        logging.error(f'获取下一门课程时出错: {e}')
         return None
 
 @app.route('/', methods=['GET', 'POST'])
@@ -55,7 +72,9 @@ def index():
     try:
         with open('data.json', encoding='utf-8') as f:
             schedule = json.load(f)
-    except Exception:
+        logging.info('成功读取 data.json 文件')
+    except Exception as e:
+        logging.error(f'读取 data.json 文件时出错: {e}')
         schedule = None
     return render_template('index.html', building_name=building_name, address=address, schedule=schedule)
 
@@ -72,14 +91,18 @@ def login():
         # 简单用户名密码校验，实际可查数据库
         if username == 'test' and password == '123456':
             session['username'] = username
+            logging.info(f'用户 {username} 登录成功')
             return redirect(url_for('profile'))
         else:
             flash('用户名或密码错误')
+            logging.warning(f'用户 {username} 登录失败，密码错误')
     return render_template('login.html')
 
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    username=session.pop('username', None)
+    if username:
+        logging.info(f'用户 {username} 注销登录')
     return redirect(url_for('login'))
 
 @app.route('/reminder')
@@ -103,10 +126,14 @@ def import_course():
         try:
             manager.process_user_text(course_text)
             # 成功后重定向到首页并带上success参数
+            logging.info('课表导入成功')
             return redirect(url_for('index', success=1))
         except Exception as e:
+            logging.error(f'课表导入失败: {e}')
             return f"导入失败：{str(e)}"
+    logging.warning('未提供课表文本')
     return "未提供课表文本。"
 
 if __name__ == '__main__':
+    logging.info('应用启动')
     app.run(debug=True)

@@ -1,0 +1,43 @@
+2025-07-09 10:36:41,736 - INFO - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ
+2025-07-09 10:36:41,764 - INFO - Ó¦ÓÃÆô¶¯
+2025-07-09 10:36:41,776 - WARNING -  * Debugger is active!
+2025-07-09 10:36:41,779 - INFO -  * Debugger PIN: 772-518-084
+2025-07-09 10:36:44,189 - INFO - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ
+2025-07-09 10:36:44,190 - INFO - Ó¦ÓÃÆô¶¯
+2025-07-09 10:36:44,207 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 10:36:44,207 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-09 10:36:44,208 - INFO -  * Restarting with stat
+2025-07-09 10:36:44,415 - INFO - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ
+2025-07-09 10:36:44,417 - INFO - Ó¦ÓÃÆô¶¯
+2025-07-09 10:36:44,428 - WARNING -  * Debugger is active!
+2025-07-09 10:36:44,430 - INFO -  * Debugger PIN: 772-518-084
+2025-07-09 10:37:06,247 - INFO - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 10:37:06,264 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:06] "GET / HTTP/1.1" 200 -
+2025-07-09 10:37:06,760 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-09 10:37:09,566 - ERROR - »ñÈ¡ÏÂÒ»ÃÅ¿Î³ÌÊ±³ö´í: string indices must be integers, not 'str'
+2025-07-09 10:37:09,570 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:09] "GET /map HTTP/1.1" 200 -
+2025-07-09 10:37:12,014 - ERROR - »ñÈ¡ÏÂÒ»ÃÅ¿Î³ÌÊ±³ö´í: string indices must be integers, not 'str'
+2025-07-09 10:37:12,044 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:12] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 10:37:13,581 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:13] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2025-07-09 10:37:16,137 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:16] "[33mGET /reminder.html HTTP/1.1[0m" 404 -
+2025-07-09 10:37:19,148 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:19] "[33mGET /login.html HTTP/1.1[0m" 404 -
+2025-07-09 10:37:21,250 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:21] "[33mGET /index.html HTTP/1.1[0m" 404 -
+2025-07-09 10:37:25,169 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:25] "GET /login HTTP/1.1" 200 -
+2025-07-09 10:37:38,787 - WARNING - ÓÃ»§ test µÇÂ¼Ê§°Ü£¬ÃÜÂë´íÎó
+2025-07-09 10:37:38,788 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:38] "POST /login HTTP/1.1" 200 -
+2025-07-09 10:37:49,795 - INFO - ÓÃ»§ test µÇÂ¼³É¹¦
+2025-07-09 10:37:49,796 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:49] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 10:37:50,106 - ERROR - »ñÈ¡ÏÂÒ»ÃÅ¿Î³ÌÊ±³ö´í: string indices must be integers, not 'str'
+2025-07-09 10:37:50,109 - INFO - 127.0.0.1 - - [09/Jul/2025 10:37:50] "GET /profile HTTP/1.1" 200 -
+2025-07-09 10:37:57,572 - INFO -  * Detected change in 'e:\\github\\mouseroad\\app.py', reloading
+2025-07-09 10:37:57,628 - INFO -  * Restarting with stat
+2025-07-09 10:37:57,828 - INFO - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ
+2025-07-09 10:37:57,830 - INFO - Ó¦ÓÃÆô¶¯
+2025-07-09 10:37:57,838 - WARNING -  * Debugger is active!
+2025-07-09 10:37:57,840 - INFO -  * Debugger PIN: 772-518-084
+2025-07-09 10:37:57,973 - INFO -  * Detected change in 'E:\\github\\mouseroad\\app.py', reloading
+2025-07-09 10:37:58,222 - INFO - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ
+2025-07-09 10:37:58,224 - INFO - Ó¦ÓÃÆô¶¯
+2025-07-09 10:37:58,231 - WARNING -  * Debugger is active!
+2025-07-09 10:37:58,233 - INFO -  * Debugger PIN: 772-518-084
