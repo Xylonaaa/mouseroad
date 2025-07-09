@@ -65,3 +65,33 @@
 2025-07-09 11:13:47,183 - INFO -  * Debugger PIN: 122-615-525
 2025-07-09 11:15:37,969 - INFO -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\¤å¥ó\\GitHub\\mouseroad\\app.py', reloading
 2025-07-09 11:15:38,111 - INFO -  * Restarting with stat
+2025-07-09 14:54:11,088 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:54:11,102 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯£¬¿ªÊ¼¼àÌıÇëÇó
+2025-07-09 14:54:11,112 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 14:54:11,114 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 14:54:15,083 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:54:15,084 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯£¬¿ªÊ¼¼àÌıÇëÇó
+2025-07-09 14:54:15,111 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 14:54:15,115 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 14:54:15,119 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 14:54:15,618 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:54:15,622 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯£¬¿ªÊ¼¼àÌıÇëÇó
+2025-07-09 14:54:15,662 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 14:54:15,670 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 14:54:41,798 - INFO - [_internal:_log:97] -  * Detected change in 'e:\\github\\mouseroad\\app.py', reloading
+2025-07-09 14:54:41,883 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 14:54:42,338 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:54:42,346 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯
+2025-07-09 14:54:42,363 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 14:54:42,367 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 14:55:17,568 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:55:17,572 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯
+2025-07-09 14:55:17,604 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 14:55:17,604 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 14:55:17,604 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 14:55:17,981 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼ş£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êı¾İ
+2025-07-09 14:55:17,985 - INFO - [app:<module>:249] - Ó¦ÓÃÆô¶¯
+2025-07-09 14:55:18,005 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 14:55:18,009 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
