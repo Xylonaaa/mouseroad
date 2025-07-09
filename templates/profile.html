@@ -11,69 +11,296 @@
       background-color: #f5f5f5;
       font-family: sans-serif;
     }
-    .profile-container {
-      max-width: 600px;
-      margin: 30px auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .profile-main-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      padding: 0 0 30px 0;
     }
-    .profile-title {
-      text-align: center;
-      margin-bottom: 30px;
+    .profile-header {
+      display: flex;
+      align-items: center;
+      padding: 32px 32px 16px 32px;
+      border-bottom: 1px solid #eee;
+      background: linear-gradient(90deg, #a00000 0%, #e57373 100%);
+      border-radius: 12px 12px 0 0;
+      color: #fff;
+    }
+    .profile-avatar-large {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #fff;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      margin-right: 28px;
+      position: relative;
+    }
+    .avatar-edit-btn {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      border: none;
+      border-radius: 0 0 0 12px;
+      font-size: 12px;
+      padding: 2px 8px;
+      cursor: pointer;
+    }
+    .profile-header-info {
+      flex: 1;
+    }
+    .profile-nickname {
+      font-size: 1.7rem;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .profile-signature {
+      font-size: 1.1rem;
+      color: #fbe9e7;
+      margin-bottom: 8px;
+    }
+    .profile-logout-btn {
+      position: absolute;
+      top: 20px;
+      right: 32px;
+      background: #fff;
       color: #a00000;
+      border: 1px solid #a00000;
+      border-radius: 5px;
+      padding: 4px 16px;
+      font-weight: bold;
+      transition: background 0.2s, color 0.2s;
+    }
+    .profile-logout-btn:hover {
+      background: #a00000;
+      color: #fff;
+    }
+    .profile-section {
+      padding: 24px 32px 0 32px;
+    }
+    .profile-section-title {
+      font-size: 1.2rem;
+      color: #a00000;
+      margin-bottom: 12px;
+      font-weight: bold;
     }
     .info-item {
       margin: 15px 0;
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-    }
-    .btn-logout {
-      background-color: #a00000;
-      color: white;
-      margin-top: 20px;
-    }
-    .btn-logout:hover {
-      background-color: #8b0000;
-      color: white;
-    }
-    .nav {
-      background-color: #a00000;
       padding: 10px 0;
-      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
     }
-    .nav button {
-      background-color: #a00000;
-      color: white;
-      border: none;
-      padding: 5px 15px;
-      margin: 0 5px;
-    }
-    .nav button:hover {
-      background-color: white;
+    .info-item strong {
+      width: 80px;
+      display: inline-block;
       color: #a00000;
-      border-radius: 5px;
+    }
+    .info-item span {
+      flex: 1;
+    }
+    .info-item form {
+      flex: 1;
+      display: inline-block;
+      margin: 0;
+    }
+    .info-item button.btn-outline-secondary {
+      margin-left: 10px;
+    }
+    @media (max-width: 600px) {
+      .profile-main-container, .profile-section {
+        padding: 10px !important;
+      }
+      .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 10px 10px 10px;
+      }
+      .profile-avatar-large {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+      .profile-header-info {
+        width: 100%;
+      }
+      .profile-logout-btn {
+        right: 10px;
+        top: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- 导航栏（保持与首页一致） -->
-  <div class="nav d-flex justify-content-center">
-    <button onclick="window.location.href='/'">课表</button>
-    <button onclick="window.location.href='/map'">地图</button>
-    <button onclick="window.location.href='/reminder'">提醒</button>
-    <button onclick="window.location.href='/profile'">个人中心</button>
-  </div>
-
-  <div class="profile-container">
-    <h2 class="profile-title">个人信息</h2>
-    <div id="profileInfo">
-      <div class="info-item">
-        <strong>账号：</strong> {{ username }}
-      </div>
-      <button class="btn btn-logout" onclick="window.location.href='/logout'">退出登录</button>
+  <!-- 头部导航容器（横向排列） -->
+  <div class="header-container">
+    <header>
+      <h1>鼠路</h1>
+    </header>
+    <div class="nav">
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/'">课表</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/profile'">个人中心</button>
     </div>
   </div>
+
+  <div class="profile-main-container position-relative">
+    <button class="profile-logout-btn" onclick="window.location.href='/logout'">退出登录</button>
+    <div class="profile-header">
+      <div style="position:relative;">
+        {% if profile.avatar %}
+          <img id="avatar-img" class="profile-avatar-large" src="/static/uploads/{{ profile.avatar }}" alt="头像">
+        {% else %}
+          <img id="avatar-img" class="profile-avatar-large" src="https://via.placeholder.com/100x100?text=头像" alt="头像">
+        {% endif %}
+        <button class="avatar-edit-btn" onclick="editField('avatar')">更换</button>
+        <form id="avatar-form" class="d-none" enctype="multipart/form-data" onsubmit="return submitAvatar(event)" style="margin-top:8px;">
+          <input type="file" name="avatar" accept="image/*" class="form-control form-control-sm" style="display:inline;width:auto;">
+          <button type="submit" class="btn btn-sm btn-success">上传</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('avatar')">取消</button>
+        </form>
+      </div>
+      <div class="profile-header-info">
+        <div class="profile-nickname">
+          <span id="nickname-display">{{ profile.nickname }}</span>
+          <button class="btn btn-sm btn-outline-light" style="margin-left:10px;background:rgba(255,255,255,0.2);color:#fff;border:none;" onclick="editField('nickname')">编辑</button>
+          <form id="nickname-form" class="d-none" onsubmit="return submitField(event, 'nickname')" style="display:inline;">
+            <input type="text" name="value" value="{{ profile.nickname }}" class="form-control form-control-sm" style="display:inline;width:auto;">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('nickname')">取消</button>
+          </form>
+        </div>
+        <div class="profile-signature">
+          <span id="signature-display">{{ profile.signature }}</span>
+          <button class="btn btn-sm btn-outline-light" style="margin-left:10px;background:rgba(255,255,255,0.2);color:#fff;border:none;" onclick="editField('signature')">编辑</button>
+          <form id="signature-form" class="d-none" onsubmit="return submitField(event, 'signature')" style="display:inline;">
+            <input type="text" name="value" value="{{ profile.signature }}" class="form-control form-control-sm" style="display:inline;width:auto;">
+            <button type="submit" class="btn btn-sm btn-success">保存</button>
+            <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('signature')">取消</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="profile-section">
+      <div class="profile-section-title">详细信息</div>
+      <div class="info-item">
+        <strong>账号：</strong> <span>{{ username }}</span>
+      </div>
+      <div class="info-item">
+        <strong>姓名：</strong> <span id="realname-display">{{ profile.realname }}</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="editField('realname')">编辑</button>
+        <form id="realname-form" class="d-none" onsubmit="return submitField(event, 'realname')">
+          <input type="text" name="value" value="{{ profile.realname }}" class="form-control form-control-sm" style="display:inline;width:auto;">
+          <button type="submit" class="btn btn-sm btn-success">保存</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('realname')">取消</button>
+        </form>
+      </div>
+      <div class="info-item">
+        <strong>年级：</strong> <span id="grade-display">{{ profile.grade }}</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="editField('grade')">编辑</button>
+        <form id="grade-form" class="d-none" onsubmit="return submitField(event, 'grade')">
+          <input type="text" name="value" value="{{ profile.grade }}" class="form-control form-control-sm" style="display:inline;width:auto;">
+          <button type="submit" class="btn btn-sm btn-success">保存</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('grade')">取消</button>
+        </form>
+      </div>
+      <div class="info-item">
+        <strong>专业：</strong> <span id="major-display">{{ profile.major }}</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="editField('major')">编辑</button>
+        <form id="major-form" class="d-none" onsubmit="return submitField(event, 'major')">
+          <input type="text" name="value" value="{{ profile.major }}" class="form-control form-control-sm" style="display:inline;width:auto;">
+          <button type="submit" class="btn btn-sm btn-success">保存</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('major')">取消</button>
+        </form>
+      </div>
+      <div class="info-item">
+        <strong>性别：</strong> <span id="gender-display">{{ profile.gender }}</span>
+        <button class="btn btn-sm btn-outline-secondary" onclick="editField('gender')">编辑</button>
+        <form id="gender-form" class="d-none" onsubmit="return submitField(event, 'gender')">
+          <select name="value" class="form-select form-select-sm" style="display:inline;width:auto;">
+            <option value="" {% if not profile.gender %}selected{% endif %}>未填写</option>
+            <option value="男" {% if profile.gender=='男' %}selected{% endif %}>男</option>
+            <option value="女" {% if profile.gender=='女' %}selected{% endif %}>女</option>
+            <option value="其他" {% if profile.gender=='其他' %}selected{% endif %}>其他</option>
+          </select>
+          <button type="submit" class="btn btn-sm btn-success">保存</button>
+          <button type="button" class="btn btn-sm btn-secondary" onclick="cancelEdit('gender')">取消</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    function editField(field) {
+      if(field === 'avatar') {
+        document.getElementById('avatar-form').classList.remove('d-none');
+        return;
+      }
+      document.getElementById(field + '-display')?.classList.add('d-none');
+      document.getElementById(field + '-form').classList.remove('d-none');
+      // 隐藏编辑按钮
+      Array.from(document.querySelectorAll('.info-item')).forEach(function(item) {
+        if(item.querySelector('button.btn-outline-secondary')) item.querySelector('button.btn-outline-secondary').style.display = 'none';
+      });
+    }
+    function cancelEdit(field) {
+      if(field === 'avatar') {
+        document.getElementById('avatar-form').classList.add('d-none');
+        return;
+      }
+      document.getElementById(field + '-form').classList.add('d-none');
+      document.getElementById(field + '-display')?.classList.remove('d-none');
+      // 恢复编辑按钮
+      Array.from(document.querySelectorAll('.info-item')).forEach(function(item) {
+        if(item.querySelector('button.btn-outline-secondary')) item.querySelector('button.btn-outline-secondary').style.display = '';
+      });
+    }
+    function submitField(event, field) {
+      event.preventDefault();
+      var form = document.getElementById(field + '-form');
+      var value = form.querySelector('[name="value"]').value;
+      var fd = new FormData();
+      fd.append('field', field);
+      fd.append('value', value);
+      fetch('/update_profile_field', {
+        method: 'POST',
+        body: fd
+      }).then(r => r.json()).then(data => {
+        if(data.success) {
+          document.getElementById(field + '-display').textContent = data.value;
+          cancelEdit(field);
+        } else {
+          alert(data.msg || '更新失败');
+        }
+      });
+      return false;
+    }
+    function submitAvatar(event) {
+      event.preventDefault();
+      var form = document.getElementById('avatar-form');
+      var fileInput = form.querySelector('[name="avatar"]');
+      if(!fileInput.files.length) { alert('请选择图片'); return false; }
+      var fd = new FormData();
+      fd.append('field', 'avatar');
+      fd.append('avatar', fileInput.files[0]);
+      fetch('/update_profile_field', {
+        method: 'POST',
+        body: fd
+      }).then(r => r.json()).then(data => {
+        if(data.success) {
+          document.getElementById('avatar-img').src = '/static/uploads/' + data.value + '?t=' + Date.now();
+          cancelEdit('avatar');
+        } else {
+          alert(data.msg || '头像上传失败');
+        }
+      });
+      return false;
+    }
+  </script>
 </body>
 </html>

@@ -247,3 +247,104 @@
 2025-07-09 16:03:26,598 - INFO - [app:<module>:250] - ”¶”√∆Ù∂Ø
 2025-07-09 16:03:26,608 - WARNING - [_internal:_log:97] -  * Debugger is active!
 2025-07-09 16:03:26,610 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 16:34:46,483 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 16:34:46,483 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 16:34:46,486 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 16:34:46,823 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 16:34:46,827 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 16:34:53,310 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:34:53] "GET / HTTP/1.1" 200 -
+2025-07-09 16:35:05,372 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 16:35:05,379 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 16:35:05,382 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 16:35:05,393 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:05] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 16:35:05,399 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:05] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 16:35:08,545 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:08] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 16:35:08,554 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:08] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-09 16:35:12,438 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:12] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 16:35:12,443 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:35:12] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-09 16:37:39,899 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:39] "GET /map HTTP/1.1" 200 -
+2025-07-09 16:37:46,583 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:46] "GET /map HTTP/1.1" 200 -
+2025-07-09 16:37:50,375 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:50] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 16:37:52,392 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:52] "GET /login HTTP/1.1" 200 -
+2025-07-09 16:37:57,417 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:57] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:37:57,435 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:37:57] "GET /profile HTTP/1.1" 200 -
+2025-07-09 16:39:40,538 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:39:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:39:40,553 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:39:40] "GET /profile HTTP/1.1" 200 -
+2025-07-09 16:52:11,892 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 16:52:12,034 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 16:52:12,546 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 16:52:12,548 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 16:53:32,758 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:53:32] "GET / HTTP/1.1" 200 -
+2025-07-09 16:53:35,156 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:53:35] "GET /login HTTP/1.1" 200 -
+2025-07-09 16:53:36,104 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:53:36] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:53:36,119 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:53:36] "GET /profile HTTP/1.1" 200 -
+2025-07-09 16:53:58,197 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:53:58] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:54:01,853 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:54:01] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:54:11,060 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:54:11] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:54:15,510 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:54:15] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:55:03,655 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:03] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:55:29,163 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:29] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-09 16:55:29,168 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:29] "GET /login HTTP/1.1" 200 -
+2025-07-09 16:55:30,441 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:30] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:55:30,457 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:30] "GET /profile HTTP/1.1" 200 -
+2025-07-09 16:55:46,810 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:46] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 16:55:51,117 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:51] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-09 16:55:51,121 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:51] "GET /login HTTP/1.1" 200 -
+2025-07-09 16:55:52,437 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:52] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:55:52,456 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:55:52] "GET /profile HTTP/1.1" 200 -
+2025-07-09 16:56:01,444 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:56:01] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-09 16:56:01,448 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:56:01] "GET /login HTTP/1.1" 200 -
+2025-07-09 16:56:02,385 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:56:02] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 16:56:02,401 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:56:02] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:05:00,062 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 17:05:00,158 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 17:05:00,479 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 17:05:00,521 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 17:05:11,520 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:05:11] "GET / HTTP/1.1" 200 -
+2025-07-09 17:05:13,522 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:05:13] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:05:14,540 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:05:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:05:14,568 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:05:14] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:05:25,360 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:05:25] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 17:06:21,188 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:06:21] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-09 17:06:21,193 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:06:21] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:09:05,335 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:05] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:09:05,357 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:05] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:09:46,480 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:46] "GET / HTTP/1.1" 200 -
+2025-07-09 17:09:49,621 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:49] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:09:50,694 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:50] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:09:50,715 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:09:50] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:10:10,741 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:10] "GET / HTTP/1.1" 200 -
+2025-07-09 17:10:13,152 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:13] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:10:14,299 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:14] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:10:14,312 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:14] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:10:16,904 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:16] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:10:17,921 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:17] "GET / HTTP/1.1" 200 -
+2025-07-09 17:10:20,940 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:20] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:10:25,578 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:25] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:10:26,818 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:26] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:10:26,834 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:26] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:10:36,306 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:36] "GET / HTTP/1.1" 200 -
+2025-07-09 17:10:38,386 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:38] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:10:39,890 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:39] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:10:39,901 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:39] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:10:55,982 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:55] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 17:10:56,064 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:10:56] "GET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg?t=1752052255991 HTTP/1.1" 200 -
+2025-07-09 17:11:07,007 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:07] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 17:11:08,789 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:08] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:11:30,557 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:30] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:11:41,125 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:41] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:11:42,672 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:42] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:11:42,693 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:42] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:11:42,701 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:11:42] "GET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1" 200 -
+2025-07-09 17:14:16,841 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:16] "GET / HTTP/1.1" 200 -
+2025-07-09 17:14:19,730 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:19] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:14:20,799 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:20] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:14:20,815 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:20] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:14:20,827 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:20] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:14:34,763 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:34] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:14:46,753 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:46] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:14:47,620 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:14:47,636 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:47] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:14:47,644 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:47] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:14:57,672 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:57] "GET /map HTTP/1.1" 200 -

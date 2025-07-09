@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import json
 import os
 from datetime import datetime
@@ -6,6 +6,7 @@ from import_table import CourseManager
 import logging
 import re
 import sys
+from werkzeug.utils import secure_filename
 
 # 設定 logging 輸出支援 UTF-8
 logging.basicConfig(
@@ -67,6 +68,38 @@ def get_next_course():
     except Exception as e:
         logging.error('获取下一门课程时出错: %s', str(e))
         return None
+
+PROFILE_FIELDS = ['realname', 'nickname', 'grade', 'major', 'gender', 'signature', 'avatar']
+PROFILE_DEFAULTS = {
+    'realname': '',
+    'nickname': '',
+    'grade': '',
+    'major': '',
+    'gender': '',
+    'signature': '',
+    'avatar': ''
+}
+UPLOAD_FOLDER = os.path.join('static', 'uploads')
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+def get_user_profile(username):
+    profile_file = f"user_{username}_profile.json"
+    if os.path.exists(profile_file):
+        with open(profile_file, encoding='utf-8') as f:
+            profile = json.load(f)
+        # 补全缺失字段
+        for k, v in PROFILE_DEFAULTS.items():
+            if k not in profile:
+                profile[k] = v
+        return profile
+    else:
+        return PROFILE_DEFAULTS.copy()
+
+def save_user_profile(username, profile):
+    profile_file = f"user_{username}_profile.json"
+    with open(profile_file, 'w', encoding='utf-8') as f:
+        json.dump(profile, f, ensure_ascii=False, indent=2)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -200,11 +233,36 @@ def profile():
         return redirect(url_for('login'))
     username = session['username']
     next_course = get_next_course()
+    profile_info = get_user_profile(username)
     if next_course:
         logging.info('为用户 %s 显示个人资料页面，下一门课程为：%s，将于 %s 开始，剩余 %d 分钟', username, next_course['course'], next_course['time'], next_course['minutes_left'])
     else:
         logging.info('为用户 %s 显示个人资料页面，今日无后续课程', username)
-    return render_template('profile.html', username=username, next_course=next_course)
+    return render_template('profile.html', username=username, next_course=next_course, profile=profile_info)
+
+@app.route('/update_profile_field', methods=['POST'])
+def update_profile_field():
+    if 'username' not in session:
+        return jsonify({'success': False, 'msg': '未登录'}), 401
+    username = session['username']
+    field = request.form.get('field')
+    if field not in PROFILE_FIELDS:
+        return jsonify({'success': False, 'msg': '字段非法'}), 400
+    profile = get_user_profile(username)
+    if field == 'avatar':
+        if 'avatar' not in request.files:
+            return jsonify({'success': False, 'msg': '未上传头像文件'}), 400
+        file = request.files['avatar']
+        if file.filename == '':
+            return jsonify({'success': False, 'msg': '未选择文件'}), 400
+        filename = secure_filename(f"{username}_avatar_{file.filename}")
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        profile['avatar'] = filename
+    else:
+        value = request.form.get('value', '')
+        profile[field] = value
+    save_user_profile(username, profile)
+    return jsonify({'success': True, 'msg': '更新成功', 'field': field, 'value': profile[field]})
 
 @app.route('/import_course', methods=['POST'])
 def import_course():
