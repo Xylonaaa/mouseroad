@@ -64,6 +64,21 @@ def map_page():
     next_course = get_next_course()
     return render_template('map.html', next_course=next_course)
 
+@app.route('/login')
+def login():
+    next_course = get_next_course()
+    return render_template('login.html', next_course=next_course)
+
+@app.route('/reminder')
+def reminder():
+    next_course = get_next_course()
+    return render_template('reminder.html', next_course=next_course)
+
+@app.route('/profile')
+def profile():
+    next_course = get_next_course()
+    return render_template('profile.html', next_course=next_course)
+
 @app.route('/import_course', methods=['POST'])
 def import_course():
     course_text = request.form.get('course_text')
