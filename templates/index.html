@@ -175,31 +175,70 @@
   </div>
 
 <script>
+    // 日志记录函数：添加中文描述和时间戳
+    function logAction(action) {
+      const timestamp = new Date().toLocaleString(); // 格式：年/月/日 时:分:秒
+      const log = `[${timestamp}] ${action}`;
+      console.log(log); // 输出到浏览器控制台
+      // 可选：保存到localStorage持久化
+      saveLogToLocalStorage(log);
+    }
+
+    // 保存日志到localStorage（可选功能）
+    function saveLogToLocalStorage(log) {
+      let logs = JSON.parse(localStorage.getItem('scheduleLogs') || '[]');
+      logs.push(log);
+      // 限制日志数量，避免占用过多空间（保留最近100条）
+      if (logs.length > 100) logs = logs.slice(-100);
+      localStorage.setItem('scheduleLogs', JSON.stringify(logs));
+    }
+
+    // 导入课表相关日志
     function submitForm() {
-      // 这里可以添加逻辑，从用户输入或其他地方获取课表文本
+      logAction("用户点击了【导入课表】按钮");
       const courseText = prompt('请输入课表文本：');
       if (courseText) {
+        logAction("用户在弹窗中输入了课表文本，准备提交导入请求");
         document.getElementById('course_text').value = courseText;
         document.getElementById('importForm').submit();
+        logAction("课表导入请求已提交到服务器");
+      } else {
+        logAction("用户取消了课表文本输入（未提交导入请求）");
       }
     }
-    
+
+    // 清除课表相关日志
     function clearSchedule() {
-      // 确认是否要清除课表
+      logAction("用户点击了【清除课表】按钮");
       if (confirm('确定要清除课表吗？此操作不可恢复。')) {
+        logAction("用户确认清除课表（点击了确认按钮）");
         document.getElementById('clearForm').submit();
+        logAction("课表清除请求已提交到服务器");
+      } else {
+        logAction("用户取消了清除课表（点击了取消按钮）");
       }
     }
-    
-    // 导入成功后弹窗提示
-    if (window.location.search.indexOf('success=1') !== -1) {
-      alert('课表导入成功！');
-    }
-    
-    // 清除成功后弹窗提示
-    if (window.location.search.indexOf('cleared=1') !== -1) {
-      alert('课表已清除！');
-    }
+
+    // 页面加载时的日志
+    window.onload = function() {
+      logAction("课表首页加载完成");
+      // 检测URL中的导入/清除成功标识并记录日志
+      if (window.location.search.includes('success=1')) {
+        logAction("检测到URL参数：课表导入成功");
+      }
+      if (window.location.search.includes('cleared=1')) {
+        logAction("检测到URL参数：课表清除成功");
+      }
+    };
+
+    // 导航按钮点击日志（新增功能）
+    document.querySelectorAll('.nav button').forEach(button => {
+      button.addEventListener('click', function() {
+        const buttonText = this.textContent.trim();
+        logAction(`用户点击了导航栏的【${buttonText}】按钮`);
+      });
+    });
+
   </script>
 
 </body>
