@@ -53,7 +53,7 @@ def index():
     # 读取课表数据
     schedule = None
     try:
-        with open('data/data.json', encoding='utf-8') as f:
+        with open('data.json', encoding='utf-8') as f:
             schedule = json.load(f)
     except Exception:
         schedule = None
