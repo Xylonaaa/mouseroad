@@ -45,22 +45,21 @@ def get_next_course():
         now = datetime.now()
         weekday_map = {0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '日'}
         today = '星期' + weekday_map[now.weekday()]
-        for courses in schedule.get(today, []):
-           for course in courses:
-                # 假设 time 字段的格式为 "X-X节"
-                time_range = courses['time'].split('节')[0]
-                start_section = int(course['time'].split('-')[0])
-                # 这里简单假设每节课开始时间为 8 点，每节课 45 分钟，课间休息 10 分钟
-                start_time = f"{8 + (start_section - 1) * 0.75:02.0f}:{((start_section - 1) * 0.75 % 1) * 60:02.0f}"
-                course_dt = datetime.strptime(now.strftime('%Y-%m-%d') + ' ' + start_time, '%Y-%m-%d %H:%M')
-                if course_dt > now:
-                    delta = int((course_dt - now).total_seconds() // 60)
-                    return {
-                        'course': course['course'],
-                        'time': course['time'],
-                        'location': course['location'],
-                        'minutes_left': delta
-                    }
+        for course in schedule.get(today, []):
+            # 假设 time 字段的格式为 "X-X节"
+            time_range = course['time'].split('节')[0]
+            start_section = int(time_range.split('-')[0])
+            # 这里简单假设每节课开始时间为 8 点，每节课 45 分钟，课间休息 10 分钟
+            start_time = f"{8 + (start_section - 1) * 0.75:02.0f}:{((start_section - 1) * 0.75 % 1) * 60:02.0f}"
+            course_dt = datetime.strptime(now.strftime('%Y-%m-%d') + ' ' + start_time, '%Y-%m-%d %H:%M')
+            if course_dt > now:
+                delta = int((course_dt - now).total_seconds() // 60)
+                return {
+                    'course': course['course_name'],
+                    'time': course['time'],
+                    'location': course['location'],
+                    'minutes_left': delta
+                }
         return None
     except Exception as e:
         logging.error(f'获取下一门课程时出错: {e}')
@@ -110,27 +109,37 @@ def map_page():
     today = '星期' + weekday_map[now.weekday()]
     next_course = None
     next_location_address = None
+    # 节次时间表（与index.html一致）
+    section_times = [
+        '08:00', '08:55', '09:50', '10:45', '11:40',
+        '13:30', '14:25', '15:20', '16:15'
+    ]
     if schedule and today in schedule:
-        # 3. 找到下一节课
+        min_time_diff = float('inf')
         for course in schedule[today]:
-            # 假设 time 字段格式为 "X-X节"
             section_range = course['time'].split('节')[0]
             start_section = int(section_range.split('-')[0])
-            # 计算课程开始时间
-            start_hour = 8 + (start_section - 1) * 0.75
-            start_minute = int(((start_section - 1) * 0.75 % 1) * 60)
-            start_time = now.replace(hour=int(start_hour), minute=start_minute, second=0, microsecond=0)
-            if start_time > now:
-                next_course = course
-                # 4. 用正则去掉location中的数字
-                location_name = re.sub(r'\d+', '', course['location'])
-                location_name = location_name.strip()
-                # 5. 去location.json查找具体地址
-                for loc in locations:
-                    if loc['楼名'] == location_name:
-                        next_location_address = loc['具体地址']
-                        break
-                break
+            # 用课表时间表
+            if 1 <= start_section <= len(section_times):
+                start_time_str = section_times[start_section - 1]
+                start_time = datetime.strptime(now.strftime('%Y-%m-%d') + ' ' + start_time_str, '%Y-%m-%d %H:%M')
+                if start_time > now:
+                    time_diff = (start_time - now).total_seconds() / 60
+                    if time_diff < min_time_diff:
+                        min_time_diff = time_diff
+                        next_course = {
+                            'course': course['course_name'],
+                            'time': course['time'],
+                            'location': course['location'],
+                            'weeks': course['weeks'],
+                            'minutes_left': int(time_diff)
+                        }
+                        # 正则和地址查找同前
+                        location_name = re.sub(r'\d+', '', course['location']).strip()
+                        for loc in locations:
+                            if loc['楼名'] == location_name:
+                                next_location_address = loc['具体地址']
+                                break
     return render_template('map.html', next_course=next_course, next_location_address=next_location_address)
 
 @app.route('/login', methods=['GET', 'POST'])
