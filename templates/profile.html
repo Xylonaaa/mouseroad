@@ -10,6 +10,54 @@
     body {
       background-color: #f5f5f5;
       font-family: sans-serif;
+      padding-top: 100px;
+    }
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #a00000;
+      z-index: 1000;
+    }
+    header {
+      color: white !important;
+      padding: 15px !important;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .nav {
+      display: flex !important;
+      justify-content: space-around !important;
+      padding: 10px 0 !important;
+      background-color: #a00000 !important;
+      width: 100% !important;
+      flex-wrap: nowrap;
+    }
+    .nav button {
+      flex: 1;
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+    .btn-custom {
+      background-color: #a00000;
+      color: white;
+      border: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-custom:hover {
+      background-color: white;
+      color: #a00000;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+    .btn-custom:active {
+      background-color: #ff69b4;
+      color: white;
     }
     .profile-main-container {
       max-width: 700px;

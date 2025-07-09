@@ -348,3 +348,49 @@
 2025-07-09 17:14:47,636 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:47] "GET /profile HTTP/1.1" 200 -
 2025-07-09 17:14:47,644 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:47] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
 2025-07-09 17:14:57,672 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:14:57] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:25:06,738 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:06] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:25:06,748 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:06] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:25:12,121 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:12] "GET / HTTP/1.1" 200 -
+2025-07-09 17:25:23,648 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 17:25:23,653 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 17:25:23,664 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 17:25:23,670 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:23] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 17:25:23,679 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:23] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 17:25:26,748 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:26] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 17:25:26,761 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:26] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-09 17:25:45,385 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:25:45] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-09 17:26:47,993 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 17:26:48,001 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 17:26:48,012 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 17:26:48,012 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:48] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 17:26:48,030 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:48] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 17:26:50,250 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:50] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:26:51,550 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:26:51,565 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:51] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:26:51,578 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:26:51] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:27:13,278 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:27:13] "POST /update_profile_field HTTP/1.1" 200 -
+2025-07-09 17:27:22,667 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:27:22] "GET / HTTP/1.1" 200 -
+2025-07-09 17:27:37,570 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:27:37] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:27:54,215 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:27:54] "GET / HTTP/1.1" 200 -
+2025-07-09 17:28:04,082 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:28:04] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:42:29,814 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:29] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:42:29,827 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:29] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:42:29,848 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:29] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:42:38,144 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:38] "GET / HTTP/1.1" 200 -
+2025-07-09 17:42:39,946 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:39] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:42:40,979 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:40] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:42:40,995 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:40] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:42:41,009 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:42:41] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-09 17:45:21,538 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:45:21] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 17:45:28,710 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:45:28] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:45:31,713 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:45:31] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 17:45:32,872 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:45:32] "GET / HTTP/1.1" 200 -
+2025-07-09 17:45:34,590 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:45:34] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 17:48:43,685 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:43] "GET / HTTP/1.1" 200 -
+2025-07-09 17:48:49,582 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:49] "GET / HTTP/1.1" 200 -
+2025-07-09 17:48:50,736 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:50] "GET /map HTTP/1.1" 200 -
+2025-07-09 17:48:56,142 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:56] "GET /reminder HTTP/1.1" 200 -
+2025-07-09 17:48:57,687 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:57] "GET /login HTTP/1.1" 200 -
+2025-07-09 17:48:59,308 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 17:48:59,328 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "GET /profile HTTP/1.1" 200 -
+2025-07-09 17:48:59,344 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -

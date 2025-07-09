@@ -11,6 +11,7 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
+      padding-top: 100px;
     }
     
     .timetable {
@@ -42,12 +43,15 @@
     header {
       background-color: #a00000 !important;
       color: white !important;
-      padding: 10px !important;
+      padding: 15px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
       position: relative !important;
       z-index: 100 !important;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
     }
     
     .nav {
@@ -58,8 +62,15 @@
       width: 100% !important;
       position: relative !important;
       z-index: 100 !important;
+      flex-wrap: nowrap;
     }
     
+    .nav button {
+      flex: 1;
+      margin: 0 5px;
+      white-space: nowrap;
+    }
+
     .timetable table {
       width: 100% !important;
       border-collapse: collapse !important;
@@ -89,7 +100,11 @@
       background-color: #a00000; /* 初始颜色 */ 
       color: white;
       border: none;
-      font-size: 30px;
+      font-size: 18px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
     }
     
     /* 鼠标悬停时变为白色 */
@@ -108,23 +123,16 @@
 </head>
 <body>
 
-  <header>
-    <h1>鼠路</h1>
-    <div>
-      <form id="importForm" action="/import_course" method="post" style="display: inline;">
-        <textarea name="course_text" id="course_text" style="display: none;"></textarea>
-        <button type="button" class="btn btn-custom shadow-sm" onclick="submitForm()">导入课表</button>
-      </form>
-      <form id="clearForm" action="/clear_schedule" method="post" style="display: inline; margin-left: 10px;">
-        <button type="button" class="btn btn-custom shadow-sm" onclick="clearSchedule()">清除课表</button>
-      </form>
+  <div class="header-container">
+    <header>
+      <h1>鼠路</h1>
+    </header>
+    <div class="nav">
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/'">课表</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
+      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/profile'">个人中心</button>
     </div>
-  </header>
-  <div class="nav">
-    <button type="button" class="btn btn-custom shadow-sm">课表</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
-    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/login'">个人中心</button>
   </div>
   <div class="timetable">
     <div class="watermark"></div>
