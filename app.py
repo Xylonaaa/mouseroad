@@ -184,6 +184,27 @@ def import_course():
     logging.warning('未提供课表文本')
     return "未提供课表文本。"
 
+@app.route('/clear_schedule', methods=['POST'])
+def clear_schedule():
+    """清除课表数据"""
+    try:
+        if 'username' in session:
+            # 清除当前用户的课表
+            user_file = f"user_{session['username']}_schedule.json"
+            if os.path.exists(user_file):
+                os.remove(user_file)
+                logging.info(f'用户 {session["username"]} 的课表已清除')
+            return redirect(url_for('index', cleared=1))
+        else:
+            # 清除全局课表
+            if os.path.exists('data.json'):
+                os.remove('data.json')
+                logging.info('全局课表已清除')
+            return redirect(url_for('index', cleared=1))
+    except Exception as e:
+        logging.error(f'清除课表失败: {e}')
+        return f"清除失败：{str(e)}"
+
 if __name__ == '__main__':
     logging.info('应用启动')
     app.run(debug=True)

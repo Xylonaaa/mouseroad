@@ -110,10 +110,15 @@
 
   <header>
     <h1>鼠路</h1>
-    <form id="importForm" action="/import_course" method="post">
-      <textarea name="course_text" id="course_text" style="display: none;"></textarea>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="submitForm()">导入课表</button>
-    </form>
+    <div>
+      <form id="importForm" action="/import_course" method="post" style="display: inline;">
+        <textarea name="course_text" id="course_text" style="display: none;"></textarea>
+        <button type="button" class="btn btn-custom shadow-sm" onclick="submitForm()">导入课表</button>
+      </form>
+      <form id="clearForm" action="/clear_schedule" method="post" style="display: inline; margin-left: 10px;">
+        <button type="button" class="btn btn-custom shadow-sm" onclick="clearSchedule()">清除课表</button>
+      </form>
+    </div>
   </header>
   <div class="nav">
     <button type="button" class="btn btn-custom shadow-sm">课表</button>
@@ -178,9 +183,22 @@
         document.getElementById('importForm').submit();
       }
     }
+    
+    function clearSchedule() {
+      // 确认是否要清除课表
+      if (confirm('确定要清除课表吗？此操作不可恢复。')) {
+        document.getElementById('clearForm').submit();
+      }
+    }
+    
     // 导入成功后弹窗提示
     if (window.location.search.indexOf('success=1') !== -1) {
       alert('课表导入成功！');
+    }
+    
+    // 清除成功后弹窗提示
+    if (window.location.search.indexOf('cleared=1') !== -1) {
+      alert('课表已清除！');
     }
   </script>
 
