@@ -4,6 +4,17 @@ import os
 from datetime import datetime
 from import_table import CourseManager
 import logging
+import re
+import logging
+import sys
+
+# 設定 logging 輸出支援 UTF-8
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    stream=sys.stdout,  # 輸出到 stdout
+    encoding='utf-8'    # 指定使用 UTF-8
+)
 
 # 配置日志
 logging.basicConfig(
@@ -80,8 +91,47 @@ def index():
 
 @app.route('/map')
 def map_page():
-    next_course = get_next_course()
-    return render_template('map.html', next_course=next_course)
+    # 1. 获取当前用户课表（如有），否则用data.json
+    schedule = None
+    if 'username' in session:
+        user_file = f"user_{session['username']}_schedule.json"
+        if os.path.exists(user_file):
+            with open(user_file, encoding='utf-8') as f:
+                schedule = json.load(f)
+    if not schedule:
+        try:
+            with open('data.json', encoding='utf-8') as f:
+                schedule = json.load(f)
+        except Exception as e:
+            schedule = None
+    # 2. 获取当前时间和星期
+    now = datetime.now()
+    weekday_map = {0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '日'}
+    today = '星期' + weekday_map[now.weekday()]
+    next_course = None
+    next_location_address = None
+    if schedule and today in schedule:
+        # 3. 找到下一节课
+        for course in schedule[today]:
+            # 假设 time 字段格式为 "X-X节"
+            section_range = course['time'].split('节')[0]
+            start_section = int(section_range.split('-')[0])
+            # 计算课程开始时间
+            start_hour = 8 + (start_section - 1) * 0.75
+            start_minute = int(((start_section - 1) * 0.75 % 1) * 60)
+            start_time = now.replace(hour=int(start_hour), minute=start_minute, second=0, microsecond=0)
+            if start_time > now:
+                next_course = course
+                # 4. 用正则去掉location中的数字
+                location_name = re.sub(r'\d+', '', course['location'])
+                location_name = location_name.strip()
+                # 5. 去location.json查找具体地址
+                for loc in locations:
+                    if loc['楼名'] == location_name:
+                        next_location_address = loc['具体地址']
+                        break
+                break
+    return render_template('map.html', next_course=next_course, next_location_address=next_location_address)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

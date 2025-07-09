@@ -11,10 +11,10 @@
   <!-- 高德地图JS API -->
   <script type="text/javascript">
     window.AMapSecurityConfig = {
-      securityJsCode: "063dde410af943deb53618d6e8c9c65c"
+      securityJsCode: "54e9aeb2c1135158a4ca9d58730727d2"
     };
   </script>
-  <script src="https://webapi.amap.com/maps?v=2.0&key=063dde410af943deb53618d6e8c9c65c"></script>
+  <script src="https://webapi.amap.com/maps?v=2.0&key=a6f4e9d188dbcb0c77307d7328cbe818"></script>
 </head>
 <body>
   <div class="info">
@@ -24,7 +24,7 @@
       <div>上课地点：{{ next_course.location }}</div>
       <div>距离上课还有：{{ next_course.minutes_left }} 分钟</div>
     {% else %}
-      <div>今天没有即将开始的课程</div>
+      <div>今天没课啦！好好休息吧^^</div>
     {% endif %}
   </div>
   <div id="map-container"></div>
@@ -40,8 +40,8 @@
         city: '全国',
         map: map
       });
-      // 搜索楼名
-      placeSearch.search('{{ next_course.location }}', function(status, result) {
+      // 搜索具体地址
+      placeSearch.search('{{ next_location_address or (next_course.location if next_course else "") }}', function(status, result) {
         if (status === 'complete' && result.poiList.pois.length > 0) {
           var poi = result.poiList.pois[0];
           map.setCenter(poi.location);

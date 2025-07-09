@@ -41,3 +41,27 @@
 2025-07-09 10:37:58,224 - INFO - ”¶”√∆Ù∂Ø
 2025-07-09 10:37:58,231 - WARNING -  * Debugger is active!
 2025-07-09 10:37:58,233 - INFO -  * Debugger PIN: 772-518-084
+2025-07-09 10:40:55,495 - WARNING -  * Debugger is active!
+2025-07-09 10:40:55,503 - INFO -  * Debugger PIN: 122-615-525
+2025-07-09 10:42:08,652 - INFO - 127.0.0.1 - - [09/Jul/2025 10:42:08] "GET / HTTP/1.1" 200 -
+2025-07-09 10:42:14,968 - INFO - 127.0.0.1 - - [09/Jul/2025 10:42:14] "GET /login HTTP/1.1" 200 -
+2025-07-09 10:53:49,865 - INFO -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 10:53:50,510 - WARNING -  * Debugger is active!
+2025-07-09 10:53:50,518 - INFO -  * Debugger PIN: 122-615-525
+2025-07-09 10:54:35,837 - INFO - 127.0.0.1 - - [09/Jul/2025 10:54:35] "GET / HTTP/1.1" 200 -
+2025-07-09 10:54:37,214 - INFO - 127.0.0.1 - - [09/Jul/2025 10:54:37] "GET /map HTTP/1.1" 200 -
+2025-07-09 10:55:32,513 - INFO - 127.0.0.1 - - [09/Jul/2025 10:55:32] "GET /map HTTP/1.1" 200 -
+2025-07-09 10:56:37,035 - INFO - 127.0.0.1 - - [09/Jul/2025 10:56:37] "GET / HTTP/1.1" 200 -
+2025-07-09 10:56:37,129 - INFO - 127.0.0.1 - - [09/Jul/2025 10:56:37] "GET / HTTP/1.1" 200 -
+2025-07-09 10:56:38,897 - INFO - 127.0.0.1 - - [09/Jul/2025 10:56:38] "GET / HTTP/1.1" 200 -
+2025-07-09 10:56:40,668 - INFO - 127.0.0.1 - - [09/Jul/2025 10:56:40] "GET /map HTTP/1.1" 200 -
+2025-07-09 10:58:53,778 - INFO - 127.0.0.1 - - [09/Jul/2025 10:58:53] "GET / HTTP/1.1" 200 -
+2025-07-09 10:58:54,708 - INFO - 127.0.0.1 - - [09/Jul/2025 10:58:54] "GET /map HTTP/1.1" 200 -
+2025-07-09 11:13:46,750 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 11:13:46,750 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-09 11:13:46,754 - INFO -  * Restarting with stat
+2025-07-09 11:13:47,175 - WARNING -  * Debugger is active!
+2025-07-09 11:13:47,183 - INFO -  * Debugger PIN: 122-615-525
+2025-07-09 11:15:37,969 - INFO -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 11:15:38,111 - INFO -  * Restarting with stat
