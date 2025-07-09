@@ -75,7 +75,7 @@
       <div class="time-info">上课周次：{{ next_course.weeks }}</div>
       <div class="location-info">上课地点：{{ next_course.location }}</div>
       <div class="minutes-left">距离上课还有：{{ next_course.minutes_left }} 分钟</div>
-      <button class="nav-button" onclick="startWalkingNavigation()">开始步行导航</button>
+      <button class="nav-button" onclick="openAmapNavigation()">开始步行导航</button>
     {% else %}
       <div style="text-align: center; color: #666; font-size: 18px;">今天没课啦！好好休息吧^^</div>
     {% endif %}
@@ -88,6 +88,12 @@
       zoom: 16,
       center: [116.397428, 39.90923]
     });
+    
+    function openAmapNavigation() {
+      var dest = encodeURIComponent("{{ next_location_address or next_course.location }}");
+      // 跳转到高德地图网页版步行导航
+      window.open('https://uri.amap.com/search?keyword=' + dest + '&src=mouseroad&callnative=0', '_blank');
+    }
     
     var currentPosition = null;
     var destinationPosition = null;
@@ -113,16 +119,13 @@
       geolocation.getCurrentPosition(function(status, result) {
         if (status === 'complete') {
           currentPosition = result.position;
-          console.log('当前位置:', currentPosition);
-          
-          // 然后搜索目的地
+          // 搜索目的地
           var searchAddress = '{{ next_location_address or next_course.location }}';
           placeSearch.search(searchAddress, function(status, result) {
             if (status === 'complete' && result.poiList.pois.length > 0) {
               var poi = result.poiList.pois[0];
               destinationPosition = poi.location;
               map.setCenter(poi.location);
-              
               // 添加目的地标记
               new AMap.Marker({
                 position: poi.location,
@@ -130,7 +133,6 @@
                 title: '{{ next_course.location }}',
                 icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png'
               });
-              
               // 添加起点标记
               new AMap.Marker({
                 position: currentPosition,
@@ -138,40 +140,11 @@
                 title: '当前位置',
                 icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
               });
-              
-              console.log('目的地位置:', destinationPosition);
             }
           });
         }
       });
     });
-    
-    // 步行导航函数
-    function startWalkingNavigation() {
-      if (!currentPosition || !destinationPosition) {
-        alert('正在获取位置信息，请稍后再试');
-        return;
-      }
-      
-      AMap.plugin('AMap.Walking', function() {
-        if (walking) {
-          map.remove(walking);
-        }
-        
-        walking = new AMap.Walking({
-          map: map,
-          panel: "panel"
-        });
-        
-        walking.search(currentPosition, destinationPosition, function(status, result) {
-          if (status === 'complete') {
-            console.log('步行导航规划完成');
-          } else {
-            alert('步行导航规划失败，请检查网络连接');
-          }
-        });
-      });
-    }
     {% else %}
     // 没有课程时，显示当前位置
     AMap.plugin('AMap.Geolocation', function() {
