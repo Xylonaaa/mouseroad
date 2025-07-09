@@ -74,25 +74,27 @@ def index():
     address = ''
     if request.method == 'POST':
         building_name = request.form.get('building_name', '').strip()
-        logging.info('用户请求查询楼名：%s', building_name)
         for loc in locations:
             if loc['楼名'] == building_name:
                 address = loc['具体地址']
                 break
         if not address and building_name:
             address = '未找到对应的楼名。'
-            logging.warning('未找到楼名 %s 对应的地址', building_name)
-        else:
-            logging.info('楼名 %s 对应的地址为：%s', building_name, address)
-    # 读取课表数据
+    # 读取课表数据，优先用户课表
     schedule = None
-    try:
-        with open('data.json', encoding='utf-8') as f:
-            schedule = json.load(f)
-        logging.info('成功读取 data.json 文件,加载了课表数据')
-    except Exception as e:
-        logging.error('读取 data.json 文件时出错: %s', str(e))
-        schedule = None
+    if 'username' in session:
+        user_file = f"user_{session['username']}_schedule.json"
+        if os.path.exists(user_file):
+            with open(user_file, encoding='utf-8') as f:
+                schedule = json.load(f)
+    if not schedule:
+        try:
+            with open('data.json', encoding='utf-8') as f:
+                schedule = json.load(f)
+            logging.info('成功读取 data.json 文件')
+        except Exception as e:
+            logging.error(f'读取 data.json 文件时出错: {e}')
+            schedule = None
     return render_template('index.html', building_name=building_name, address=address, schedule=schedule)
 
 @app.route('/map')
@@ -222,28 +224,27 @@ def import_course():
 
 @app.route('/clear_schedule', methods=['POST'])
 def clear_schedule():
-    """清除课表数据"""
     try:
         if 'username' in session:
-            # 清除当前用户的课表
             user_file = f"user_{session['username']}_schedule.json"
+            abs_user_file = os.path.abspath(user_file)
+            logging.info(f'尝试删除用户课表文件: {abs_user_file}')
             if os.path.exists(user_file):
                 os.remove(user_file)
-                logging.info('用户 %s 的课表已清除', session['username'])
+                logging.info(f'用户课表文件 {abs_user_file} 已删除')
             else:
-                logging.info('用户 %s 的课表文件不存在，无需清除', session['username'])
-            return redirect(url_for('index', cleared=1))
+                logging.info(f'用户课表文件 {abs_user_file} 不存在')
         else:
-            # 清除全局课表
-            if os.path.exists('data.json'):
-                os.remove('data.json')
-                logging.info('全局课表已清除')
-            else:
-                logging.info('全局课表文件不存在，无需清除')
-            return redirect(url_for('index', cleared=1))
+            abs_data_file = os.path.abspath('data.json')
+            logging.info(f'尝试清空全局课表文件: {abs_data_file}')
+            with open('data.json', 'w', encoding='utf-8') as f:
+                json.dump({}, f, ensure_ascii=False, indent=2)
+            logging.info(f'已将 {abs_data_file} 内容清空')
+        return redirect(url_for('index', cleared=1))
     except Exception as e:
-        logging.error('清除课表失败: %s', str(e))
+        logging.error(f'清除课表失败: {e}')
         return f"清除失败：{str(e)}"
+
 
 if __name__ == '__main__':
     logging.info('应用启动')

@@ -95,3 +95,64 @@
 2025-07-09 14:55:17,985 - INFO - [app:<module>:249] - ”¶”√∆Ù∂Ø
 2025-07-09 14:55:18,005 - WARNING - [_internal:_log:97] -  * Debugger is active!
 2025-07-09 14:55:18,009 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 15:25:12,868 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 15:25:12,869 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 15:25:12,869 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:25:13,307 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:25:13,313 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:25:26,717 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:25:26] "GET / HTTP/1.1" 200 -
+2025-07-09 15:25:27,891 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:25:27] "GET /map HTTP/1.1" 200 -
+2025-07-09 15:25:36,520 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:25:36] "GET /map HTTP/1.1" 200 -
+2025-07-09 15:25:45,064 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:25:45] "GET /map HTTP/1.1" 200 -
+2025-07-09 15:25:51,782 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:25:51] "GET /map HTTP/1.1" 200 -
+2025-07-09 15:26:12,913 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:26:12] "GET /map HTTP/1.1" 200 -
+2025-07-09 15:26:22,676 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:26:22] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:26:22,701 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:26:22] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:26:27,222 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:26:27] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:26:27,245 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:26:27] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:29:37,224 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 15:29:37,329 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:29:37,829 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:29:37,845 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:30:12,256 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:30:12] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:30:15,964 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:30:15] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:30:15,975 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:30:15] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:31:12,122 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:12] "GET /login HTTP/1.1" 200 -
+2025-07-09 15:31:13,730 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-09 15:31:13,752 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:13] "GET /profile HTTP/1.1" 200 -
+2025-07-09 15:31:15,903 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:15] "GET / HTTP/1.1" 200 -
+2025-07-09 15:31:18,574 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:18] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:31:18,587 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:31:18] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:31:52,300 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 15:31:52,397 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:31:52,661 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:31:52,661 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:32:45,170 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:32:45] "GET / HTTP/1.1" 200 -
+2025-07-09 15:32:49,549 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:32:49] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:32:49,561 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:32:49] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:39:42,112 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 15:39:42,232 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:39:42,521 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:39:42,521 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:39:51,573 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:39:51] "GET / HTTP/1.1" 200 -
+2025-07-09 15:39:56,949 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:39:56] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:39:56,962 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:39:56] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:40:51,150 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:40:51] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:40:51,160 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:40:51] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:41:22,874 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 15:41:22,874 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 15:41:22,877 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:41:23,135 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:41:23,142 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:41:30,994 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:41:30] "GET / HTTP/1.1" 200 -
+2025-07-09 15:41:34,692 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:41:34] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:41:34,707 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:41:34] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:46:40,588 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\§Â•Û\\GitHub\\mouseroad\\app.py', reloading
+2025-07-09 15:46:40,825 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:46:41,236 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:46:41,236 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-09 15:46:47,809 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:47] "GET / HTTP/1.1" 200 -
+2025-07-09 15:46:51,369 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:51] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:46:51,376 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:51] "GET /?cleared=1 HTTP/1.1" 200 -

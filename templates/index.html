@@ -219,15 +219,17 @@
       }
     }
 
-    // 页面加载时的日志
+    // 页面加载时的日志和弹窗
     window.onload = function() {
       logAction("课表首页加载完成");
       // 检测URL中的导入/清除成功标识并记录日志
       if (window.location.search.includes('success=1')) {
         logAction("检测到URL参数：课表导入成功");
+        alert('课表导入成功！');
       }
       if (window.location.search.includes('cleared=1')) {
         logAction("检测到URL参数：课表清除成功");
+        alert('课表已清除！');
       }
     };
 
