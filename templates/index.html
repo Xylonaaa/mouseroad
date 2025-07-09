@@ -175,73 +175,214 @@
   </div>
 
 <script>
-    // 日志记录函数：添加中文描述和时间戳
-    function logAction(action) {
-      const timestamp = new Date().toLocaleString(); // 格式：年/月/日 时:分:秒
-      const log = `[${timestamp}] ${action}`;
-      console.log(log); // 输出到浏览器控制台
-      // 可选：保存到localStorage持久化
+    // 日志级别配置
+    const LOG_LEVELS = {
+      DEBUG: 1,
+      INFO: 2,
+      WARNING: 3,
+      ERROR: 4,
+      NONE: 5
+    };
+    const CURRENT_LOG_LEVEL = LOG_LEVELS.DEBUG; // 可调整为不同级别控制日志输出
+
+    // 日志记录函数
+    function logDebug(message) {
+      if (CURRENT_LOG_LEVEL <= LOG_LEVELS.DEBUG) {
+        const timestamp = new Date().toLocaleString();
+        const log = `[${timestamp}] [DEBUG] ${message}`;
+        console.debug(log);
+        saveLogToLocalStorage(log);
+      }
+    }
+
+    function logInfo(message) {
+      if (CURRENT_LOG_LEVEL <= LOG_LEVELS.INFO) {
+        const timestamp = new Date().toLocaleString();
+        const log = `[${timestamp}] [INFO] ${message}`;
+        console.log(log);
+        saveLogToLocalStorage(log);
+      }
+    }
+
+    function logWarning(message) {
+      if (CURRENT_LOG_LEVEL <= LOG_LEVELS.WARNING) {
+        const timestamp = new Date().toLocaleString();
+        const log = `[${timestamp}] [WARNING] ${message}`;
+        console.warn(log);
+        saveLogToLocalStorage(log);
+      }
+    }
+
+    function logError(message, errorObj = null) {
+      const timestamp = new Date().toLocaleString();
+      let log = `[${timestamp}] [ERROR] ${message}`;
+      if (errorObj) {
+        log += `\n  Error Details: ${errorObj.message}`;
+        if (errorObj.stack) {
+          log += `\n  Stack Trace: ${errorObj.stack}`;
+        }
+      }
+      console.error(log);
       saveLogToLocalStorage(log);
     }
 
-    // 保存日志到localStorage（可选功能）
+    // 性能日志函数
+    const performanceTimers = {};
+    function startTimer(label) {
+      performanceTimers[label] = performance.now();
+      logDebug(`性能计时开始: ${label}`);
+    }
+
+    function endTimer(label) {
+      if (performanceTimers[label]) {
+        const duration = performance.now() - performanceTimers[label];
+        logInfo(`性能计时结束: ${label}，耗时 ${duration.toFixed(2)}ms`);
+        delete performanceTimers[label];
+      } else {
+        logWarning(`性能计时错误: ${label} 未启动`);
+      }
+    }
+
+    // 保存日志到localStorage
     function saveLogToLocalStorage(log) {
-      let logs = JSON.parse(localStorage.getItem('scheduleLogs') || '[]');
-      logs.push(log);
-      // 限制日志数量，避免占用过多空间（保留最近100条）
-      if (logs.length > 100) logs = logs.slice(-100);
-      localStorage.setItem('scheduleLogs', JSON.stringify(logs));
+      try {
+        let logs = JSON.parse(localStorage.getItem('scheduleLogs') || '[]');
+        logs.push(log);
+        if (logs.length > 100) logs = logs.slice(-100);
+        localStorage.setItem('scheduleLogs', JSON.stringify(logs));
+      } catch (e) {
+        console.error('Failed to save log to localStorage:', e);
+      }
     }
 
     // 导入课表相关日志
     function submitForm() {
-      logAction("用户点击了【导入课表】按钮");
-      const courseText = prompt('请输入课表文本：');
-      if (courseText) {
-        logAction("用户在弹窗中输入了课表文本，准备提交导入请求");
+      logInfo("用户点击了【导入课表】按钮");
+      try {
+        startTimer("导入课表流程");
+        const courseText = prompt('请输入课表文本：');
+        if (!courseText) {
+          logWarning("用户未输入课表文本，取消导入");
+          return;
+        }
+        
+        logDebug(`用户输入的课表文本长度: ${courseText.length} 字符`);
         document.getElementById('course_text').value = courseText;
+        
+        if (courseText.length > 10000) {
+          logWarning("课表文本超长(超过10000字符)，可能导致处理缓慢");
+        }
+        
         document.getElementById('importForm').submit();
-        logAction("课表导入请求已提交到服务器");
-      } else {
-        logAction("用户取消了课表文本输入（未提交导入请求）");
+        logInfo("课表导入请求已提交到服务器");
+        endTimer("导入课表流程");
+      } catch (error) {
+        logError("导入课表过程中发生错误", error);
+        endTimer("导入课表流程");
       }
     }
 
     // 清除课表相关日志
     function clearSchedule() {
-      logAction("用户点击了【清除课表】按钮");
-      if (confirm('确定要清除课表吗？此操作不可恢复。')) {
-        logAction("用户确认清除课表（点击了确认按钮）");
-        document.getElementById('clearForm').submit();
-        logAction("课表清除请求已提交到服务器");
-      } else {
-        logAction("用户取消了清除课表（点击了取消按钮）");
+      logInfo("用户点击了【清除课表】按钮");
+      try {
+        startTimer("清除课表流程");
+        if (confirm('确定要清除课表吗？此操作不可恢复。')) {
+          logInfo("用户确认清除课表");
+          document.getElementById('clearForm').submit();
+          logInfo("课表清除请求已提交到服务器");
+        } else {
+          logInfo("用户取消了清除课表操作");
+        }
+        endTimer("清除课表流程");
+      } catch (error) {
+        logError("清除课表过程中发生错误", error);
+        endTimer("清除课表流程");
       }
     }
 
-    // 页面加载时的日志和弹窗
+    // 页面加载时的日志
     window.onload = function() {
-      logAction("课表首页加载完成");
-      // 检测URL中的导入/清除成功标识并记录日志
-      if (window.location.search.includes('success=1')) {
-        logAction("检测到URL参数：课表导入成功");
-        alert('课表导入成功！');
-      }
-      if (window.location.search.includes('cleared=1')) {
-        logAction("检测到URL参数：课表清除成功");
-        alert('课表已清除！');
+      try {
+        logInfo("课表首页加载开始");
+        startTimer("页面加载总耗时");
+        
+        // 检测页面元素加载情况
+        const timetableElement = document.querySelector('.timetable');
+        if (!timetableElement) {
+          logWarning("未找到课表容器元素");
+        }
+        
+        // 检测URL中的导入/清除成功标识并记录日志
+        if (window.location.search.includes('success=1')) {
+          logInfo("检测到URL参数：课表导入成功");
+        }
+        if (window.location.search.includes('cleared=1')) {
+          logInfo("检测到URL参数：课表清除成功");
+        }
+        
+        // 检测localStorage中是否有保存的日志
+        const savedLogs = JSON.parse(localStorage.getItem('scheduleLogs') || '[]');
+        if (savedLogs.length > 50) {
+          logWarning(`本地存储的日志数量较多(${savedLogs.length}条)，建议定期清理`);
+        }
+        
+        logInfo("课表首页加载完成");
+        endTimer("页面加载总耗时");
+      } catch (error) {
+        logError("页面加载过程中发生错误", error);
       }
     };
 
-    // 导航按钮点击日志（新增功能）
+    // 导航按钮点击日志
     document.querySelectorAll('.nav button').forEach(button => {
       button.addEventListener('click', function() {
-        const buttonText = this.textContent.trim();
-        logAction(`用户点击了导航栏的【${buttonText}】按钮`);
+        try {
+          const buttonText = this.textContent.trim();
+          logInfo(`用户点击了导航栏的【${buttonText}】按钮`);
+          
+          // 性能监控
+          startTimer(`导航到${buttonText}页面`);
+          setTimeout(() => {
+            // 模拟导航耗时
+            endTimer(`导航到${buttonText}页面`);
+          }, 200);
+        } catch (error) {
+          logError(`导航按钮【${buttonText}】点击事件处理错误`, error);
+        }
       });
     });
 
-  </script>
+    // 全局错误捕获
+    window.onerror = function(message, source, lineno, colno, error) {
+      logError(`全局错误捕获: ${message}`, error);
+      return false;
+    };
+
+    // Promise未捕获的拒绝
+    window.addEventListener('unhandledrejection', function(event) {
+      logError(`未处理的Promise拒绝: ${event.reason.message}`, event.reason);
+    });
+
+    // 窗口大小变化日志
+    window.addEventListener('resize', function() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      logDebug(`窗口大小变化: ${width}x${height}`);
+      
+      if (width < 576) {
+        logInfo("进入移动设备视图模式");
+      }
+    });
+
+    // 页面可见性变化日志
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) {
+        logInfo("页面进入后台(不可见)");
+      } else {
+        logInfo("页面进入前台(可见)");
+      }
+    });
 
 </body>
 </html>
