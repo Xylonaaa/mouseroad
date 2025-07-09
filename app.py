@@ -240,7 +240,7 @@ def clear_schedule():
             with open('data.json', 'w', encoding='utf-8') as f:
                 json.dump({}, f, ensure_ascii=False, indent=2)
             logging.info(f'已将 {abs_data_file} 内容清空')
-        return redirect(url_for('index', cleared=1))
+        return redirect(url_for('index', cleared=1, cleared_success=1))
     except Exception as e:
         logging.error(f'清除课表失败: {e}')
         return f"清除失败：{str(e)}"

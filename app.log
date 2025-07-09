@@ -156,3 +156,94 @@
 2025-07-09 15:46:47,809 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:47] "GET / HTTP/1.1" 200 -
 2025-07-09 15:46:51,369 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:51] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
 2025-07-09 15:46:51,376 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:46:51] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:51:57,971 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êý¾Ý
+2025-07-09 15:51:57,974 - INFO - [app:<module>:250] - Ó¦ÓÃÆô¶¯
+2025-07-09 15:51:57,995 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-09 15:51:57,996 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-09 15:51:57,996 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 15:51:58,210 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êý¾Ý
+2025-07-09 15:51:58,212 - INFO - [app:<module>:250] - Ó¦ÓÃÆô¶¯
+2025-07-09 15:51:58,220 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 15:51:58,222 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 15:52:05,947 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:52:05,964 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:05] "GET / HTTP/1.1" 200 -
+2025-07-09 15:52:06,438 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:06] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-09 15:52:09,230 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 15:52:09,232 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 15:52:09,233 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:09] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:52:09,533 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:52:09,534 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:09] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:52:39,936 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 15:52:39,936 - INFO - [import_table:process_user_text:280] - ¿ªÊ¼´¦ÀíÓÃ»§¿Î±íÎÄ±¾
+2025-07-09 15:52:39,939 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 15:52:39,953 - INFO - [import_table:parse_course_text:140] - ¿ªÊ¼½âÎö¿Î±í£¬¹² 56 ÐÐÊý¾Ý
+2025-07-09 15:52:39,954 - INFO - [import_table:parse_course_text:197] - ¿Î±í½âÎöÍê³É£¬¹²½âÎöµ½ 17 ÃÅ¿Î³Ì
+2025-07-09 15:52:39,955 - INFO - [import_table:convert_to_json:238] - JSON×ª»»Íê³É£¬¹² 5 ÌìÓÐ¿Î³Ì
+2025-07-09 15:52:39,956 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 15:52:39,956 - INFO - [import_table:process_user_text:295] - ÓÃ»§¿Î±íÎÄ±¾´¦ÀíÍê³É
+2025-07-09 15:52:39,957 - INFO - [app:import_course:217] - ¿Î±íµ¼Èë³É¹¦£¬´¦ÀíÁË 72 Ìõ¿Î³ÌÐÅÏ¢
+2025-07-09 15:52:39,957 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:39] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 15:52:39,973 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:52:39,975 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:39] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 15:52:43,584 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 15:52:43,585 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 15:52:43,585 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:43] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:52:43,892 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:52:43,893 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:52:43] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:54:18,281 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 15:54:18,283 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 15:54:18,284 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:18] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:54:18,288 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:54:18,289 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:18] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:54:47,110 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 15:54:47,110 - INFO - [import_table:process_user_text:280] - ¿ªÊ¼´¦ÀíÓÃ»§¿Î±íÎÄ±¾
+2025-07-09 15:54:47,111 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 15:54:47,112 - INFO - [import_table:parse_course_text:140] - ¿ªÊ¼½âÎö¿Î±í£¬¹² 56 ÐÐÊý¾Ý
+2025-07-09 15:54:47,112 - INFO - [import_table:parse_course_text:197] - ¿Î±í½âÎöÍê³É£¬¹²½âÎöµ½ 17 ÃÅ¿Î³Ì
+2025-07-09 15:54:47,112 - INFO - [import_table:convert_to_json:238] - JSON×ª»»Íê³É£¬¹² 5 ÌìÓÐ¿Î³Ì
+2025-07-09 15:54:47,113 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 15:54:47,114 - INFO - [import_table:process_user_text:295] - ÓÃ»§¿Î±íÎÄ±¾´¦ÀíÍê³É
+2025-07-09 15:54:47,114 - INFO - [app:import_course:217] - ¿Î±íµ¼Èë³É¹¦£¬´¦ÀíÁË 72 Ìõ¿Î³ÌÐÅÏ¢
+2025-07-09 15:54:47,114 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:47] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 15:54:47,420 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:54:47,423 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:47] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 15:54:50,735 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 15:54:50,737 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 15:54:50,738 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:50] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:54:50,742 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:54:50,742 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:54:50] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 15:55:54,500 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 15:55:54,501 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 15:55:54,502 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:55:54] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 15:55:54,508 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 15:55:54,508 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 15:55:54] "GET /?cleared=1 HTTP/1.1" 200 -
+2025-07-09 16:02:50,917 - INFO - [_internal:_log:97] -  * Detected change in 'E:\\github\\mouseroad\\app.py', reloading
+2025-07-09 16:02:50,975 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 16:02:51,210 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êý¾Ý
+2025-07-09 16:02:51,214 - INFO - [app:<module>:250] - Ó¦ÓÃÆô¶¯
+2025-07-09 16:02:51,228 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 16:02:51,231 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
+2025-07-09 16:03:07,130 - INFO - [import_table:__init__:32] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json
+2025-07-09 16:03:07,131 - INFO - [import_table:process_user_text:280] - ¿ªÊ¼´¦ÀíÓÃ»§¿Î±íÎÄ±¾
+2025-07-09 16:03:07,132 - INFO - [import_table:save_text_to_file:48] - Successfully saved text to YongHuKeBiao.txt
+2025-07-09 16:03:07,134 - INFO - [import_table:parse_course_text:140] - ¿ªÊ¼½âÎö¿Î±í£¬¹² 56 ÐÐÊý¾Ý
+2025-07-09 16:03:07,136 - INFO - [import_table:parse_course_text:197] - ¿Î±í½âÎöÍê³É£¬¹²½âÎöµ½ 17 ÃÅ¿Î³Ì
+2025-07-09 16:03:07,136 - INFO - [import_table:convert_to_json:238] - JSON×ª»»Íê³É£¬¹² 5 ÌìÓÐ¿Î³Ì
+2025-07-09 16:03:07,137 - INFO - [import_table:save_to_json:255] - Successfully saved JSON to data.json
+2025-07-09 16:03:07,137 - INFO - [import_table:process_user_text:295] - ÓÃ»§¿Î±íÎÄ±¾´¦ÀíÍê³É
+2025-07-09 16:03:07,137 - INFO - [app:import_course:217] - ¿Î±íµ¼Èë³É¹¦£¬´¦ÀíÁË 72 Ìõ¿Î³ÌÐÅÏ¢
+2025-07-09 16:03:07,138 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:03:07] "[32mPOST /import_course HTTP/1.1[0m" 302 -
+2025-07-09 16:03:07,147 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 16:03:07,177 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:03:07] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-09 16:03:10,661 - INFO - [app:clear_schedule:239] - ³¢ÊÔÇå¿ÕÈ«¾Ö¿Î±íÎÄ¼þ: E:\github\mouseroad\data.json
+2025-07-09 16:03:10,662 - INFO - [app:clear_schedule:242] - ÒÑ½« E:\github\mouseroad\data.json ÄÚÈÝÇå¿Õ
+2025-07-09 16:03:10,663 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:03:10] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-09 16:03:10,972 - INFO - [app:index:94] - ³É¹¦¶ÁÈ¡ data.json ÎÄ¼þ
+2025-07-09 16:03:10,973 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 16:03:10] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-09 16:03:26,319 - INFO - [_internal:_log:97] -  * Detected change in 'E:\\github\\mouseroad\\import_table.py', reloading
+2025-07-09 16:03:26,379 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-09 16:03:26,596 - INFO - [app:<module>:36] - ³É¹¦¶ÁÈ¡ location.json ÎÄ¼þ£¬¼ÓÔØÁË 19 ÌõÂ¥ÃûÓëµØÖ·Êý¾Ý
+2025-07-09 16:03:26,598 - INFO - [app:<module>:250] - Ó¦ÓÃÆô¶¯
+2025-07-09 16:03:26,608 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-09 16:03:26,610 - INFO - [_internal:_log:97] -  * Debugger PIN: 772-518-084
