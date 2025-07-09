@@ -12,40 +12,7 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
-      padding-top: 100px; /* 为固定表头预留空间 */
-    }
-
-    /* 头部导航横向排列样式 */
-    .header-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #a00000;
-      z-index: 1000; /* 确保在最上层 */
-    }
-
-    header {
-      color: white !important;
-      padding: 15px !important;
-      text-align: center; /* 标题居中 */
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .nav {
-      display: flex !important;
-      justify-content: space-around !important;
-      padding: 10px 0 !important;
-      background-color: #a00000 !important;
-      width: 100% !important;
-      flex-wrap: nowrap; /* 防止换行 */
-    }
-
-    .nav button {
-      flex: 1; /* 平均分配宽度 */
-      margin: 0 5px; /* 按钮间距 */
-      white-space: nowrap; /* 防止文字换行 */
+      /* 移除顶部留白 */
     }
 
     /* 提醒设置容器样式 */
@@ -139,17 +106,58 @@
   </style>
 </head>
 <body>
-  <!-- 头部导航容器（横向排列） -->
-  <div class="header-container">
-    <header>
-      <h1>鼠路</h1>
-    </header>
-
-    <div class="nav">
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/'">课表</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/login'">个人中心</button>
+  <style>
+  .main-navbar {
+    background: #a00000;
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0 2px 8px rgba(160,0,0,0.08);
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .nav-btn-group {
+    display: flex;
+    gap: 12px;
+  }
+  .main-navbar button {
+    background: #fff;
+    color: #a00000;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 22px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 3px rgba(160,0,0,0.04);
+  }
+  .main-navbar button:hover, .main-navbar button:focus {
+    background: #a00000;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(160,0,0,0.12);
+  }
+  @media (max-width: 600px) {
+    .main-navbar {
+      flex-direction: column;
+      gap: 10px;
+      border-radius: 0 0 10px 10px;
+      padding: 8px 0;
+    }
+    .main-navbar button {
+      font-size: 15px;
+      padding: 7px 12px;
+    }
+  }
+  </style>
+  <div class="main-navbar">
+    <div class="nav-btn-group">
+      <button onclick="window.location.href='/'">课表</button>
+      <button onclick="window.location.href='/map'">地图</button>
+      <button onclick="window.location.href='/reminder'">提醒</button>
+      <button onclick="window.location.href='/profile'">个人中心</button>
     </div>
   </div>
 

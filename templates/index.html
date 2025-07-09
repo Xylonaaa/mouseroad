@@ -11,7 +11,6 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f5f5f5;
-      padding-top: 100px;
     }
     
     .timetable {
@@ -43,15 +42,12 @@
     header {
       background-color: #a00000 !important;
       color: white !important;
-      padding: 15px !important;
+      padding: 10px !important;
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
       position: relative !important;
       z-index: 100 !important;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
     }
     
     .nav {
@@ -62,15 +58,8 @@
       width: 100% !important;
       position: relative !important;
       z-index: 100 !important;
-      flex-wrap: nowrap;
     }
     
-    .nav button {
-      flex: 1;
-      margin: 0 5px;
-      white-space: nowrap;
-    }
-
     .timetable table {
       width: 100% !important;
       border-collapse: collapse !important;
@@ -100,11 +89,7 @@
       background-color: #a00000; /* 初始颜色 */ 
       color: white;
       border: none;
-      font-size: 18px;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
+      font-size: 30px;
     }
     
     /* 鼠标悬停时变为白色 */
@@ -123,16 +108,44 @@
 </head>
 <body>
 
-  <div class="header-container">
-    <header>
-      <h1>鼠路</h1>
-    </header>
-    <div class="nav">
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/'">课表</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
-      <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/profile'">个人中心</button>
+  <header>
+    <h1>鼠路</h1>
+    <div>
+      <!-- 导入课表按钮，弹窗选择文本或Excel -->
+      <button type="button" class="btn btn-custom shadow-sm" onclick="showImportModal()">导入课表</button>
+      <form id="clearForm" action="/clear_schedule" method="post" style="display: inline; margin-left: 10px;">
+        <button type="button" class="btn btn-custom shadow-sm" onclick="clearSchedule()">清除课表</button>
+      </form>
     </div>
+  </header>
+  <!-- 导入课表弹窗 -->
+  <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="importModalLabel">导入课表</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <button class="btn btn-outline-primary w-100 mb-3" onclick="showTextImport()">文本导入</button>
+          <button class="btn btn-outline-success w-100" onclick="showExcelImport()">Excel导入</button>
+          <form id="importTextForm" action="/import_course" method="post" style="display:none; margin-top:20px;">
+            <textarea name="course_text" id="course_text" class="form-control mb-2" rows="6" placeholder="粘贴课表文本..."></textarea>
+            <button type="submit" class="btn btn-primary w-100">提交文本</button>
+          </form>
+          <form id="importExcelForm" action="/import_course_excel" method="post" enctype="multipart/form-data" style="display:none; margin-top:20px;">
+            <input type="file" name="excel_file" accept=".xlsx" class="form-control mb-2" required>
+            <button type="submit" class="btn btn-success w-100">上传Excel</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav">
+    <button type="button" class="btn btn-custom shadow-sm">课表</button>
+    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/map'">地图</button>
+    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/reminder'">提醒</button>
+    <button type="button" class="btn btn-custom shadow-sm" onclick="window.location.href='/login'">个人中心</button>
   </div>
   <div class="timetable">
     <div class="watermark"></div>
@@ -182,6 +195,7 @@
     </table>
   </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     // 日志记录函数：添加中文描述和时间戳
     function logAction(action) {
@@ -225,6 +239,22 @@
       } else {
         logAction("用户取消了清除课表（点击了取消按钮）");
       }
+    }
+
+    // 导入课表弹窗逻辑
+    function showImportModal() {
+      var modal = new bootstrap.Modal(document.getElementById('importModal'));
+      document.getElementById('importTextForm').style.display = 'none';
+      document.getElementById('importExcelForm').style.display = 'none';
+      modal.show();
+    }
+    function showTextImport() {
+      document.getElementById('importTextForm').style.display = '';
+      document.getElementById('importExcelForm').style.display = 'none';
+    }
+    function showExcelImport() {
+      document.getElementById('importTextForm').style.display = 'none';
+      document.getElementById('importExcelForm').style.display = '';
     }
 
     // 页面加载时的日志

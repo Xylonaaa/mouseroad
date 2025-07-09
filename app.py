@@ -264,6 +264,24 @@ def update_profile_field():
     save_user_profile(username, profile)
     return jsonify({'success': True, 'msg': '更新成功', 'field': field, 'value': profile[field]})
 
+@app.route('/remove_avatar', methods=['POST'])
+def remove_avatar():
+    if 'username' not in session:
+        return jsonify({'success': False, 'msg': '未登录'}), 401
+    username = session['username']
+    profile = get_user_profile(username)
+    avatar_filename = profile.get('avatar', '')
+    if avatar_filename:
+        avatar_path = os.path.join(app.config['UPLOAD_FOLDER'], avatar_filename)
+        if os.path.exists(avatar_path):
+            try:
+                os.remove(avatar_path)
+            except Exception as e:
+                logging.error(f'删除头像文件失败: {e}')
+    profile['avatar'] = ''
+    save_user_profile(username, profile)
+    return jsonify({'success': True, 'msg': '头像已移除'})
+
 @app.route('/import_course', methods=['POST'])
 def import_course():
     course_text = request.form.get('course_text')
@@ -279,6 +297,26 @@ def import_course():
             return f"导入失败：{str(e)}"
     logging.warning('未提供课表文本，无法进行导入操作')
     return "未提供课表文本。"
+
+@app.route('/import_course_excel', methods=['POST'])
+def import_course_excel():
+    if 'excel_file' not in request.files:
+        return '未上传Excel文件', 400
+    file = request.files['excel_file']
+    if file.filename == '':
+        return '未选择文件', 400
+    filename = secure_filename(file.filename)
+    temp_path = os.path.join('static', 'uploads', filename)
+    file.save(temp_path)
+    manager = CourseManager()
+    try:
+        manager.process_user_excel(temp_path)
+        os.remove(temp_path)
+        logging.info('Excel课表导入成功')
+        return redirect(url_for('index', success=1))
+    except Exception as e:
+        logging.error(f'Excel课表导入失败: {e}')
+        return f"导入失败：{str(e)}"
 
 @app.route('/clear_schedule', methods=['POST'])
 def clear_schedule():

@@ -4,6 +4,7 @@ import json
 import logging
 from typing import List, Dict, Optional, Tuple
 from pathlib import Path
+import openpyxl
 
 # 配置日志
 logger = logging.getLogger(__name__)
@@ -299,6 +300,51 @@ class CourseManager:
             error_msg = f"处理用户文本失败: {e}"
             logger.error(error_msg)
             raise ValueError(error_msg)
+    
+    def process_user_excel(self, file_path: str) -> dict:
+        """
+        解析截图格式的 Excel 课表，整理为 data.json 所需结构。
+        Args:
+            file_path: Excel 文件路径
+        Returns:
+            处理后的JSON数据
+        """
+        wb = openpyxl.load_workbook(file_path)
+        ws = wb.active
+        # 第一行为星期，第一列为节次
+        days = [cell.value for cell in ws[1][1:]]  # 跳过A1
+        schedule = {day: [] for day in days if day}
+        for row in ws.iter_rows(min_row=2):
+            section = row[0].value  # 节次（如1,2,3...）
+            for col, cell in enumerate(row[1:], start=1):
+                day = days[col-1]
+                if not day or not cell.value:
+                    continue
+                # 支持多门课用换行分隔
+                for entry in str(cell.value).split('\n'):
+                    parts = entry.split(',')
+                    if len(parts) < 3:
+                        continue
+                    time_part = parts[0].strip()  # 3-4节 (1-17周)
+                    course_name = parts[1].strip()
+                    location = parts[2].strip()
+                    # 解析节次和周次
+                    import re
+                    m = re.match(r'(\d+)-(\d+)节\s*\((\d+)-(\d+)周\)', time_part)
+                    if m:
+                        start_section, end_section, start_week, end_week = m.groups()
+                        course_obj = {
+                            'course_name': course_name,
+                            'location': location,
+                            'time': f"{start_section}-{end_section}节",
+                            'weeks': f"{start_week}-{end_week}"
+                        }
+                        # 去重：只添加未出现过的课程
+                        if course_obj not in schedule[day]:
+                            schedule[day].append(course_obj)
+        # 保存到json
+        self.save_to_json(schedule)
+        return schedule
     
     def get_course_count(self) -> Dict[str, int]:
         """
