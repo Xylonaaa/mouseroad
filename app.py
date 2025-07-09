@@ -5,7 +5,6 @@ from datetime import datetime
 from import_table import CourseManager
 import logging
 import re
-import logging
 import sys
 
 # 設定 logging 輸出支援 UTF-8
@@ -17,14 +16,16 @@ logging.basicConfig(
 )
 
 # 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log'),
-        logging.StreamHandler()
-    ]
-)
+file_handler = logging.FileHandler('app.log')
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - [%(module)s:%(funcName)s:%(lineno)d] - %(message)s'))
+
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.INFO)
+stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - [%(module)s:%(funcName)s:%(lineno)d] - %(message)s'))
+
+logging.getLogger().addHandler(file_handler)
+logging.getLogger().addHandler(stream_handler)
 
 app = Flask(__name__)
 app.secret_key = 'mouseroadgogogoyeah250709'
@@ -32,9 +33,9 @@ app.secret_key = 'mouseroadgogogoyeah250709'
 try:
     with open(os.path.join(os.path.dirname(__file__), 'location.json'), encoding='utf-8') as f:
         locations = json.load(f)
-    logging.info('成功读取 location.json 文件')
+    logging.info('成功读取 location.json 文件，加载了 %d 条楼名与地址数据', len(locations))
 except Exception as e:
-    logging.error(f'读取 location.json 文件时出错: {e}')
+    logging.error('读取 location.json 文件时出错: %s', str(e))
 
 
 def get_next_course():
@@ -45,6 +46,7 @@ def get_next_course():
         now = datetime.now()
         weekday_map = {0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '日'}
         today = '星期' + weekday_map[now.weekday()]
+        logging.info('当前日期为 %s，开始查找下一门课程', today)
         for course in schedule.get(today, []):
             # 假设 time 字段的格式为 "X-X节"
             time_range = course['time'].split('节')[0]
@@ -60,9 +62,10 @@ def get_next_course():
                     'location': course['location'],
                     'minutes_left': delta
                 }
+        logging.info('今日无后续课程')
         return None
     except Exception as e:
-        logging.error(f'获取下一门课程时出错: {e}')
+        logging.error('获取下一门课程时出错: %s', str(e))
         return None
 
 @app.route('/', methods=['GET', 'POST'])
@@ -71,20 +74,24 @@ def index():
     address = ''
     if request.method == 'POST':
         building_name = request.form.get('building_name', '').strip()
+        logging.info('用户请求查询楼名：%s', building_name)
         for loc in locations:
             if loc['楼名'] == building_name:
                 address = loc['具体地址']
                 break
         if not address and building_name:
             address = '未找到对应的楼名。'
+            logging.warning('未找到楼名 %s 对应的地址', building_name)
+        else:
+            logging.info('楼名 %s 对应的地址为：%s', building_name, address)
     # 读取课表数据
     schedule = None
     try:
         with open('data.json', encoding='utf-8') as f:
             schedule = json.load(f)
-        logging.info('成功读取 data.json 文件')
+        logging.info('成功读取 data.json 文件,加载了课表数据')
     except Exception as e:
-        logging.error(f'读取 data.json 文件时出错: {e}')
+        logging.error('读取 data.json 文件时出错: %s', str(e))
         schedule = None
     return render_template('index.html', building_name=building_name, address=address, schedule=schedule)
 
@@ -97,12 +104,17 @@ def map_page():
         if os.path.exists(user_file):
             with open(user_file, encoding='utf-8') as f:
                 schedule = json.load(f)
+            logging.info('成功加载用户 %s 的课表数据', session['username'])
+        else:
+            logging.info('用户 %s 的课表文件不存在，尝试加载全局课表', session['username'])
     if not schedule:
         try:
             with open('data.json', encoding='utf-8') as f:
                 schedule = json.load(f)
+            logging.info('成功加载全局课表数据')
         except Exception as e:
             schedule = None
+            logging.error('加载课表数据时出错: %s', str(e))
     # 2. 获取当前时间和星期
     now = datetime.now()
     weekday_map = {0: '一', 1: '二', 2: '三', 3: '四', 4: '五', 5: '六', 6: '日'}
@@ -116,6 +128,7 @@ def map_page():
     ]
     if schedule and today in schedule:
         min_time_diff = float('inf')
+        logging.info('当前日期为 %s，开始查找下一门课程', today)
         for course in schedule[today]:
             section_range = course['time'].split('节')[0]
             start_section = int(section_range.split('-')[0])
@@ -140,6 +153,10 @@ def map_page():
                             if loc['楼名'] == location_name:
                                 next_location_address = loc['具体地址']
                                 break
+        if next_course:
+            logging.info('找到下一门课程：%s，将于 %s 开始，剩余 %d 分钟，地址为 %s', next_course['course'], next_course['time'], next_course['minutes_left'], next_location_address)
+        else:
+            logging.info('今日无后续课程')
     return render_template('map.html', next_course=next_course, next_location_address=next_location_address)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -147,6 +164,7 @@ def login():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+        logging.info('用户 %s 尝试登录', username)
         # 简单用户名密码校验，实际可查数据库
         if username == 'test' and password == '123456':
             session['username'] = username
@@ -167,14 +185,23 @@ def logout():
 @app.route('/reminder')
 def reminder():
     next_course = get_next_course()
+    if next_course:
+        logging.info('为用户提供下一门课程提醒：%s，将于 %s 开始，剩余 %d 分钟', next_course['course'], next_course['time'], next_course['minutes_left'])
+    else:
+        logging.info('今日无后续课程，无提醒信息')
     return render_template('reminder.html', next_course=next_course)
 
 @app.route('/profile')
 def profile():
     if 'username' not in session:
+        logging.warning('未登录用户尝试访问个人资料页面，重定向到登录页面')
         return redirect(url_for('login'))
     username = session['username']
     next_course = get_next_course()
+    if next_course:
+        logging.info('为用户 %s 显示个人资料页面，下一门课程为：%s，将于 %s 开始，剩余 %d 分钟', username, next_course['course'], next_course['time'], next_course['minutes_left'])
+    else:
+        logging.info('为用户 %s 显示个人资料页面，今日无后续课程', username)
     return render_template('profile.html', username=username, next_course=next_course)
 
 @app.route('/import_course', methods=['POST'])
@@ -185,12 +212,12 @@ def import_course():
         try:
             manager.process_user_text(course_text)
             # 成功后重定向到首页并带上success参数
-            logging.info('课表导入成功')
+            logging.info('课表导入成功，处理了 %d 条课程信息', len(course_text.splitlines()))
             return redirect(url_for('index', success=1))
         except Exception as e:
             logging.error(f'课表导入失败: {e}')
             return f"导入失败：{str(e)}"
-    logging.warning('未提供课表文本')
+    logging.warning('未提供课表文本，无法进行导入操作')
     return "未提供课表文本。"
 
 @app.route('/clear_schedule', methods=['POST'])
@@ -202,16 +229,20 @@ def clear_schedule():
             user_file = f"user_{session['username']}_schedule.json"
             if os.path.exists(user_file):
                 os.remove(user_file)
-                logging.info(f'用户 {session["username"]} 的课表已清除')
+                logging.info('用户 %s 的课表已清除', session['username'])
+            else:
+                logging.info('用户 %s 的课表文件不存在，无需清除', session['username'])
             return redirect(url_for('index', cleared=1))
         else:
             # 清除全局课表
             if os.path.exists('data.json'):
                 os.remove('data.json')
                 logging.info('全局课表已清除')
+            else:
+                logging.info('全局课表文件不存在，无需清除')
             return redirect(url_for('index', cleared=1))
     except Exception as e:
-        logging.error(f'清除课表失败: {e}')
+        logging.error('清除课表失败: %s', str(e))
         return f"清除失败：{str(e)}"
 
 if __name__ == '__main__':
