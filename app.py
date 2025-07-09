@@ -1,11 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, flash
 import json
 import os
 from datetime import datetime
 from import_table import CourseManager
 
 app = Flask(__name__)
-
+app.secret_key = 'mouseroadgogogoyeah250709'
 # 读取楼名与地址数据
 with open(os.path.join(os.path.dirname(__file__), 'location.json'), encoding='utf-8') as f:
     locations = json.load(f)
@@ -64,10 +64,23 @@ def map_page():
     next_course = get_next_course()
     return render_template('map.html', next_course=next_course)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    next_course = get_next_course()
-    return render_template('login.html', next_course=next_course)
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        # 简单用户名密码校验，实际可查数据库
+        if username == 'test' and password == '123456':
+            session['username'] = username
+            return redirect(url_for('profile'))
+        else:
+            flash('用户名或密码错误')
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
 @app.route('/reminder')
 def reminder():
@@ -76,8 +89,11 @@ def reminder():
 
 @app.route('/profile')
 def profile():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    username = session['username']
     next_course = get_next_course()
-    return render_template('profile.html', next_course=next_course)
+    return render_template('profile.html', username=username, next_course=next_course)
 
 @app.route('/import_course', methods=['POST'])
 def import_course():
