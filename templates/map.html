@@ -144,13 +144,23 @@
   <div class="info">
     {% if next_course %}
       <div class="course-title">{{ next_course.course }}</div>
-      <div class="time-info">课程时间：{{ next_course.time }}</div>
-      <div class="time-info">上课周次：{{ next_course.weeks }}</div>
+      {% if next_course.time %}
+        <div class="time-info">课程时间：{{ next_course.time }}</div>
+      {% endif %}
+      {% if next_course.weeks %}
+        <div class="time-info">上课周次：{{ next_course.weeks }}</div>
+      {% endif %}
       <div class="location-info">上课地点：{{ next_course.location }}</div>
-      <div class="minutes-left">距离上课还有：{{ next_course.minutes_left }} 分钟</div>
+      {% if next_course.minutes_left > 0 %}
+        <div class="minutes-left">距离上课还有：{{ next_course.minutes_left }} 分钟</div>
+      {% endif %}
       <button class="nav-button" onclick="openAmapNavigation()">开始步行导航</button>
+      <button class="nav-button" onclick="window.location.href='/'">返回课表</button>
     {% else %}
       <div style="text-align: center; color: #666; font-size: 18px;">今天没课啦！好好休息吧^^</div>
+      <div style="text-align: center; margin-top: 10px;">
+        <button class="nav-button" onclick="window.location.href='/'">返回课表</button>
+      </div>
     {% endif %}
   </div>
   <div id="map-container">

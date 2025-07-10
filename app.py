@@ -132,6 +132,32 @@ def index():
 
 @app.route('/map')
 def map_page():
+    # 检查是否有从首页传递的课程参数
+    course_name = request.args.get('course')
+    course_time = request.args.get('time')
+    course_location = request.args.get('location')
+    course_weeks = request.args.get('weeks')
+    
+    # 如果从首页传递了课程信息，直接使用
+    if course_name and course_location:
+        selected_course = {
+            'course': course_name,
+            'time': course_time or '',
+            'location': course_location,
+            'weeks': course_weeks or '',
+            'minutes_left': 0  # 从首页点击时不需要计算剩余时间
+        }
+        # 查找对应的地址
+        location_name = re.sub(r'\d+', '', course_location).strip()
+        next_location_address = None
+        for loc in locations:
+            if loc['楼名'] == location_name:
+                next_location_address = loc['具体地址']
+                break
+        logging.info('从首页接收到课程信息：%s，地点：%s，地址：%s', course_name, course_location, next_location_address)
+        return render_template('map.html', next_course=selected_course, next_location_address=next_location_address)
+    
+    # 如果没有从首页传递参数，则按原来的逻辑查找下一门课程
     # 1. 获取当前用户课表（如有），否则用data.json
     schedule = None
     if 'username' in session:

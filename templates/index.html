@@ -104,6 +104,30 @@
       background-color: #ff69b4; /* 粉色 */
       color: white;
     }
+    
+    /* 课程单元格样式 */
+    .course-cell {
+      transition: background-color 0.2s ease;
+      border-radius: 4px;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    
+    .course-cell:hover {
+      background-color: #f8f9fa;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .course-cell:active {
+      background-color: #e9ecef;
+      transform: scale(0.98);
+    }
   </style>
 </head>
 <body>
@@ -182,7 +206,11 @@
                     {% set start_section = section_range.split('-')[0]|int %}
                     {% set end_section = section_range.split('-')[1]|int %}
                     {% if i >= start_section and i <= end_section and not found %}
-                      {{ course.course_name }}<br>{{ course.location }}<br>{{ course.weeks }}
+                      <div class="course-cell" 
+                           onclick="navigateToCourse('{{ course.course_name }}', '{{ course.time }}', '{{ course.location }}', '{{ course.weeks }}')"
+                           style="cursor: pointer; padding: 2px;">
+                        {{ course.course_name }}<br>{{ course.location }}<br>{{ course.weeks }}
+                      </div>
                       {% set found = true %}
                     {% endif %}
                   {% endfor %}
@@ -276,6 +304,22 @@
         logAction(`用户点击了导航栏的【${buttonText}】按钮`);
       });
     });
+    
+    // 课程导航函数
+    function navigateToCourse(courseName, courseTime, courseLocation, courseWeeks) {
+      logAction(`用户点击了课程【${courseName}】，准备跳转到地图页面`);
+      
+      // 构建URL参数
+      const params = new URLSearchParams({
+        course: courseName,
+        time: courseTime,
+        location: courseLocation,
+        weeks: courseWeeks
+      });
+      
+      // 跳转到地图页面
+      window.location.href = `/map?${params.toString()}`;
+    }
 </script>
 
 </body>
