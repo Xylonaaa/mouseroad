@@ -394,3 +394,47 @@
 2025-07-09 17:48:59,308 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "[32mPOST /login HTTP/1.1[0m" 302 -
 2025-07-09 17:48:59,328 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "GET /profile HTTP/1.1" 200 -
 2025-07-09 17:48:59,344 - INFO - [_internal:_log:97] - 127.0.0.1 - - [09/Jul/2025 17:48:59] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-10 09:48:28,697 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-10 09:48:28,699 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-10 09:48:28,702 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 09:48:29,381 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 09:48:29,387 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 09:48:33,572 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:33] "GET / HTTP/1.1" 200 -
+2025-07-10 09:48:33,709 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-10 09:48:37,519 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:37] "GET /login HTTP/1.1" 200 -
+2025-07-10 09:48:38,763 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:38] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 09:48:38,805 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:38] "GET /profile HTTP/1.1" 200 -
+2025-07-10 09:48:38,838 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:38] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-10 09:48:40,096 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:40] "GET / HTTP/1.1" 200 -
+2025-07-10 09:48:47,411 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: user_test_schedule.json, username: test
+2025-07-10 09:48:47,440 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to user_test_schedule.json
+2025-07-10 09:48:47,441 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:47] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 09:48:47,468 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:47] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 09:48:50,070 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:50] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 09:48:50,091 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:50] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 09:48:54,235 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:54] "GET /login HTTP/1.1" 200 -
+2025-07-10 09:48:55,112 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:55] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 09:48:55,141 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:55] "GET /profile HTTP/1.1" 200 -
+2025-07-10 09:48:55,155 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:55] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-10 09:48:56,620 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:48:56] "GET / HTTP/1.1" 200 -
+2025-07-10 09:49:03,181 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: user_test_schedule.json, username: test
+2025-07-10 09:49:03,207 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to user_test_schedule.json
+2025-07-10 09:49:03,221 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:03] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 09:49:03,231 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:03] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 09:49:05,272 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:05] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 09:49:05,290 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:05] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 09:49:09,656 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:09] "GET /login HTTP/1.1" 200 -
+2025-07-10 09:49:10,707 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:10] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 09:49:10,737 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:10] "GET /profile HTTP/1.1" 200 -
+2025-07-10 09:49:10,753 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:10] "[36mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 304 -
+2025-07-10 09:49:11,582 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:11] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-10 09:49:11,589 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:11] "GET /login HTTP/1.1" 200 -
+2025-07-10 09:49:14,679 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:14] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 09:49:18,240 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:18] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 09:49:31,279 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: data.json, username: None
+2025-07-10 09:49:31,316 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to data.json
+2025-07-10 09:49:31,325 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:31] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 09:49:31,341 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:31] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 09:49:32,957 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:32] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 09:49:32,975 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:49:32] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -

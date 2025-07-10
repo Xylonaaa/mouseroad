@@ -286,11 +286,13 @@ def remove_avatar():
 def import_course():
     course_text = request.form.get('course_text')
     if course_text:
-        manager = CourseManager()
+        # 获取当前用户名，如果已登录则使用用户特定文件
+        username = session.get('username') if 'username' in session else None
+        manager = CourseManager(username=username)
         try:
             manager.process_user_text(course_text)
             # 成功后重定向到首页并带上success参数
-            logging.info('课表导入成功，处理了 %d 条课程信息', len(course_text.splitlines()))
+            logging.info('课表导入成功，处理了 %d 条课程信息，用户: %s', len(course_text.splitlines()), username or '未登录')
             return redirect(url_for('index', success=1))
         except Exception as e:
             logging.error(f'课表导入失败: {e}')
@@ -308,11 +310,13 @@ def import_course_excel():
     filename = secure_filename(file.filename)
     temp_path = os.path.join('static', 'uploads', filename)
     file.save(temp_path)
-    manager = CourseManager()
+    # 获取当前用户名，如果已登录则使用用户特定文件
+    username = session.get('username') if 'username' in session else None
+    manager = CourseManager(username=username)
     try:
         manager.process_user_excel(temp_path)
         os.remove(temp_path)
-        logging.info('Excel课表导入成功')
+        logging.info('Excel课表导入成功，用户: %s', username or '未登录')
         return redirect(url_for('index', success=1))
     except Exception as e:
         logging.error(f'Excel课表导入失败: {e}')
