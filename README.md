@@ -24,4 +24,4 @@ app.py
 ---|---|---
 程序设计语言|python、javascript|2025.9.2025070301、5.9.20250709
 IDE|Visual Studio Code|1.101.2 (user setup)
-框架|flask  3.1.1
+框架|flask  |3.1.1
