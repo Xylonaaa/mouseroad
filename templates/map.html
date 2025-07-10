@@ -49,13 +49,41 @@
     }
     #map-container { 
       width: calc(100% - 40px); 
-      height: 400px; 
+      height: 350px; 
       border-radius: 12px; 
       overflow: hidden; 
-      margin: 0 20px 20px 20px;
+      margin: 0 20px 10px 20px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.10);
       background: #e9ecef;
       position: relative;
+    }
+    
+    #route-panel {
+      width: calc(100% - 40px);
+      margin: 0 20px 20px 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+      padding: 15px;
+      display: none;
+    }
+    
+    .route-item {
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .route-item:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .route-item.selected {
+      background-color: #e3f2fd;
+      border-color: #2196f3;
     }
     .nav-button {
       background-color: #a00000;
@@ -86,13 +114,8 @@
       #map-container { height: 260px; }
     }
   </style>
-  <!-- 高德地图JS API -->
-  <script type="text/javascript">
-    window.AMapSecurityConfig = {
-      securityJsCode: "54e9aeb2c1135158a4ca9d58730727d2"
-    };
-  </script>
-  <script src="https://webapi.amap.com/maps?v=2.0&key=a6f4e9d188dbcb0c77307d7328cbe818"></script>
+  <!-- 百度地图JS API -->
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=Pe9uWgct4UWLZAbevBQ1s7a2DFJjfNGs"></script>
 </head>
 <body>
   <style>
@@ -168,7 +191,7 @@
       {% if next_course.minutes_left > 0 %}
         <div class="minutes-left">距离上课还有：{{ next_course.minutes_left }} 分钟</div>
       {% endif %}
-      <button class="nav-button" onclick="openAmapNavigation()">开始步行导航</button>
+      <button class="nav-button" onclick="planRoute()">規劃路線</button>
       <button class="nav-button" onclick="window.location.href='/'">返回课表</button>
     {% else %}
       <div style="text-align: center; color: #666; font-size: 18px;">今天没课啦！好好休息吧^^</div>
@@ -184,90 +207,213 @@
       </div>
     </div>
   </div>
+  
+  <div id="route-panel">
+    <h5 style="margin-bottom: 15px; color: #333;">路線規劃結果</h5>
+    <div id="route-list"></div>
+    <div style="text-align: center; margin-top: 15px;">
+      <button class="nav-button" onclick="startNavigation()" id="start-nav-btn" style="display: none;">開始導航</button>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    function openAmapNavigation() {
-      var dest = encodeURIComponent("{{ next_location_address or next_course.location }}");
-      window.open('https://uri.amap.com/search?keyword=' + dest + '&src=mouseroad&callnative=0', '_blank');
-    }
-    var map = new AMap.Map('map-container', {
-      zoom: 16,
-      center: [116.397428, 39.90923]
-    });
-    // 显示加载动画，地图加载完成后隐藏
-    var mapLoading = document.getElementById('map-loading');
-    map.on('complete', function() {
-      if(mapLoading) mapLoading.style.display = 'none';
-    });
+    // 百度地图相关变量
+    var map = null;
     var currentPosition = null;
     var destinationPosition = null;
-    var walking = null;
-  </script>
-  {% if next_course %}
-  <script>
-    // 有下一节课时，搜索并定位到教室
-    AMap.plugin(['AMap.PlaceSearch', 'AMap.Geolocation'], function() {
-      var placeSearch = new AMap.PlaceSearch({
-        city: '全国',
-        map: map
-      });
-      var geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true,
-        timeout: 10000,
-        buttonPosition: 'RB',
-        zoomToAccuracy: true
-      });
-      map.addControl(geolocation);
-      geolocation.getCurrentPosition(function(status, result) {
-        if (status === 'complete') {
-          currentPosition = result.position;
-          var searchAddress = '{{ next_location_address or next_course.location }}';
-          placeSearch.search(searchAddress, function(status, result) {
-            if (status === 'complete' && result.poiList.pois.length > 0) {
-              var poi = result.poiList.pois[0];
-              destinationPosition = poi.location;
-              map.setCenter(poi.location);
-              new AMap.Marker({
-                position: poi.location,
-                map: map,
-                title: '{{ next_course.location }}',
-                icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png'
-              });
-              new AMap.Marker({
-                position: currentPosition,
-                map: map,
-                title: '当前位置',
-                icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png'
-              });
-            }
-          });
+    var routeResults = [];
+    var selectedRouteIndex = -1;
+    
+    // 课程数据
+    var courseLocation = "{{ next_course.location if next_course else '' }}";
+    var courseAddress = "{{ next_location_address or '' }}";
+    var courseName = "{{ next_course.course if next_course else '' }}";
+    
+    // 初始化地图
+    function initMap() {
+      map = new BMap.Map("map-container");
+      map.enableScrollWheelZoom(true);
+      map.setDefaultCursor("crosshair");
+      
+      // 隐藏加载动画
+      var mapLoading = document.getElementById('map-loading');
+      if(mapLoading) mapLoading.style.display = 'none';
+      
+      // 设置默认中心点
+      var defaultPoint = new BMap.Point(116.404, 39.915);
+      map.centerAndZoom(defaultPoint, 15);
+      
+      // 如果有课程信息，搜索目的地
+      if (courseLocation) {
+        searchDestination();
+      } else {
+        // 没有课程时，获取当前位置
+        getCurrentLocation();
+      }
+    }
+    
+    // 搜索目的地
+    function searchDestination() {
+      var destination = courseAddress || courseLocation;
+      var local = new BMap.LocalSearch(map, {
+        onSearchComplete: function(results) {
+          if (local.getStatus() == BMAP_STATUS_SUCCESS) {
+            var poi = results.getPoi(0);
+            destinationPosition = poi.point;
+            
+            // 添加目的地标记
+            var marker = new BMap.Marker(poi.point);
+            map.addOverlay(marker);
+            var label = new BMap.Label(courseLocation, {offset: new BMap.Size(20, -10)});
+            marker.setLabel(label);
+            
+            // 搜索目的地后，获取当前位置
+            getCurrentLocation();
+          } else {
+            console.log("目的地搜索失败");
+            getCurrentLocation();
+          }
         }
       });
-    });
-  </script>
-  {% else %}
-  <script>
-    // 没有课程时，显示当前位置
-    AMap.plugin('AMap.Geolocation', function() {
-      var geolocation = new AMap.Geolocation({
-        enableHighAccuracy: true,
-        timeout: 10000,
-        buttonPosition: 'RB',
-        zoomToAccuracy: true
-      });
-      map.addControl(geolocation);
-      geolocation.getCurrentPosition(function(status, result) {
-        if (status === 'complete') {
-          map.setCenter(result.position);
-          new AMap.Marker({
-            position: result.position,
-            map: map,
-            title: '当前位置'
-          });
+      local.search(destination);
+    }
+    
+    // 获取当前位置
+    function getCurrentLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var lat = position.coords.latitude;
+          var lng = position.coords.longitude;
+          currentPosition = new BMap.Point(lng, lat);
+          
+          map.centerAndZoom(currentPosition, 15);
+          
+          // 添加当前位置标记
+          var marker = new BMap.Marker(currentPosition);
+          map.addOverlay(marker);
+          var label = new BMap.Label("当前位置", {offset: new BMap.Size(20, -10)});
+          marker.setLabel(label);
+          
+          console.log("定位成功: " + lat + ", " + lng);
+        }, function(error) {
+          console.log("定位失败，使用默认位置");
+          useDefaultLocation();
+        }, {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 60000
+        });
+      } else {
+        console.log("浏览器不支持定位，使用默认位置");
+        useDefaultLocation();
+      }
+    }
+    
+    // 使用默认位置
+    function useDefaultLocation() {
+      currentPosition = new BMap.Point(116.404, 39.915);
+      map.centerAndZoom(currentPosition, 15);
+      
+      var marker = new BMap.Marker(currentPosition);
+      map.addOverlay(marker);
+      var label = new BMap.Label("当前位置（默认）", {offset: new BMap.Size(20, -10)});
+      marker.setLabel(label);
+    }
+    
+    // 规划路线
+    function planRoute() {
+      if (!currentPosition || !destinationPosition) {
+        alert("正在获取位置信息，请稍后再试");
+        return;
+      }
+      
+      var walking = new BMap.WalkingRoute(map, {
+        onSearchComplete: function(results) {
+          if (walking.getStatus() == BMAP_STATUS_SUCCESS) {
+            var plan = results.getPlan(0);
+            
+            // 清除之前的路线
+            map.clearOverlays();
+            
+            // 重新添加标记
+            var startMarker = new BMap.Marker(currentPosition);
+            var endMarker = new BMap.Marker(destinationPosition);
+            map.addOverlay(startMarker);
+            map.addOverlay(endMarker);
+            
+            // 绘制路线
+            var route = plan.getRoute(0);
+            var polyline = new BMap.Polyline(route.getPath(), {
+              strokeColor: "#3388ff",
+              strokeWeight: 6,
+              strokeOpacity: 0.8
+            });
+            map.addOverlay(polyline);
+            
+            // 显示路线信息
+            displayRouteInfo(plan);
+          } else {
+            alert("路线规划失败，请检查网络连接");
+          }
         }
       });
-    });
+      
+      walking.search(currentPosition, destinationPosition);
+    }
+    
+    // 显示路线信息
+    function displayRouteInfo(plan) {
+      var routePanel = document.getElementById('route-panel');
+      var routeList = document.getElementById('route-list');
+      
+      routeList.innerHTML = '';
+      
+      var routeItem = document.createElement('div');
+      routeItem.className = 'route-item selected';
+      routeItem.onclick = function() {
+        selectRoute(0);
+      };
+      
+      var distance = plan.getDistance(true);
+      var duration = plan.getDuration(true);
+      
+      routeItem.innerHTML = '<div style="font-weight: bold; color: #333;">步行路线</div>' +
+        '<div style="color: #666; font-size: 14px; margin-top: 5px;">距离: ' + distance + ' | 时间: ' + duration + '</div>' +
+        '<div style="color: #999; font-size: 12px; margin-top: 3px;">起点: 当前位置 → 终点: ' + courseLocation + '</div>';
+      
+      routeList.appendChild(routeItem);
+      routePanel.style.display = 'block';
+      
+      document.getElementById('start-nav-btn').style.display = 'inline-block';
+      selectedRouteIndex = 0;
+    }
+    
+    // 选择路线
+    function selectRoute(index) {
+      document.querySelectorAll('.route-item').forEach(item => {
+        item.classList.remove('selected');
+      });
+      
+      event.target.closest('.route-item').classList.add('selected');
+      selectedRouteIndex = index;
+    }
+    
+    // 开始导航
+    function startNavigation() {
+      if (selectedRouteIndex === -1) {
+        alert("请先选择一条路线");
+        return;
+      }
+      
+      var destination = courseAddress || courseLocation;
+      var url = 'https://api.map.baidu.com/direction?origin=当前位置&destination=' + encodeURIComponent(destination) + '&mode=walking&region=全国&output=html&src=webapp.baidu.openAPIdemo';
+      window.open(url, '_blank');
+    }
+    
+    // 页面加载完成后初始化地图
+    window.onload = function() {
+      initMap();
+    };
   </script>
-  {% endif %}
 </body>
 </html> 
