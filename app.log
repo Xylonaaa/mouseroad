@@ -461,3 +461,128 @@
 2025-07-10 09:56:16,959 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:56:16] "GET / HTTP/1.1" 200 -
 2025-07-10 09:56:30,487 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:56:30] "GET / HTTP/1.1" 200 -
 2025-07-10 09:56:42,584 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:56:42] "GET / HTTP/1.1" 200 -
+2025-07-10 09:58:55,498 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:58:55] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 09:58:55,524 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 09:58:55] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:00:58,585 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:00:58] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:01:07,953 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:01:07] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:01:23,185 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:01:23] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:01:26,241 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:01:26] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:01:27,423 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:01:27] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:01:27,479 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:01:27] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:02:31,738 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-10 10:02:31,738 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-10 10:02:31,738 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:02:32,411 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:02:32,411 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:02:37,104 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:37] "GET / HTTP/1.1" 200 -
+2025-07-10 10:02:41,000 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:41] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:02:41,018 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:41] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:02:46,168 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:46] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:02:46,187 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:46] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:02:47,796 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:47] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:02:48,942 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:48] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 10:02:48,988 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:48] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:02:49,013 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:49] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:02:50,190 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:50] "GET / HTTP/1.1" 200 -
+2025-07-10 10:02:51,826 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:51] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:02:51,846 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:51] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:02:58,722 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:58] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:02:58,746 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:02:58] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:03:14,657 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:03:14] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:03:14,672 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:03:14] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:03:45,096 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:03:45] "GET / HTTP/1.1" 200 -
+2025-07-10 10:05:59,320 - INFO - [_internal:_log:97] - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-10 10:05:59,321 - INFO - [_internal:_log:97] - [33mPress CTRL+C to quit[0m
+2025-07-10 10:05:59,323 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:06:00,054 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:06:00,056 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:06:19,920 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:19] "GET / HTTP/1.1" 200 -
+2025-07-10 10:06:39,201 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: user_test_schedule.json, username: test
+2025-07-10 10:06:39,231 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to user_test_schedule.json
+2025-07-10 10:06:39,240 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:39] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 10:06:39,244 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:39] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 10:06:41,712 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:41] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:06:41,732 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:41] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:06:44,176 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:44] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:06:45,233 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:45] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 10:06:45,273 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:45] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:06:45,290 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:45] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:06:46,703 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:46] "GET / HTTP/1.1" 200 -
+2025-07-10 10:06:53,138 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: user_test_schedule.json, username: test
+2025-07-10 10:06:53,172 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to user_test_schedule.json
+2025-07-10 10:06:53,180 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:53] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 10:06:53,195 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:53] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 10:06:55,103 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:55] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:06:55,117 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:55] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:06:56,877 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:56] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:06:58,176 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:58] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 10:06:58,205 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:58] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:06:58,224 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:58] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:06:58,951 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:58] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-10 10:06:58,953 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:06:58] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:07:02,217 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:02] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:07:04,346 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:04] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
+2025-07-10 10:07:05,099 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:05] "GET /reminder HTTP/1.1" 200 -
+2025-07-10 10:07:08,646 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:08] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:07:08,654 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:08] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:07:11,857 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:11] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:07:13,272 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:13] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:07:13,282 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:13] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:07:16,078 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:07:16] "GET / HTTP/1.1" 200 -
+2025-07-10 10:12:46,821 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:46] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:12:47,792 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:47] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 10:12:47,806 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:47] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:12:47,825 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:47] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:12:49,740 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:49] "GET / HTTP/1.1" 200 -
+2025-07-10 10:12:57,363 - INFO - [import_table:__init__:40] - CourseManager initialized with txt_path: YongHuKeBiao.txt, json_path: user_test_schedule.json, username: test
+2025-07-10 10:12:57,390 - INFO - [import_table:save_to_json:263] - Successfully saved JSON to user_test_schedule.json
+2025-07-10 10:12:57,401 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:57] "[32mPOST /import_course_excel HTTP/1.1[0m" 302 -
+2025-07-10 10:12:57,417 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:12:57] "GET /?success=1 HTTP/1.1" 200 -
+2025-07-10 10:13:33,774 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:13:33] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:21:39,552 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\¤å¥ó\\GitHub\\mouseroad\\app.py', reloading
+2025-07-10 10:21:39,693 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:21:40,489 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:21:40,498 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:21:46,552 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\¤å¥ó\\GitHub\\mouseroad\\app.py', reloading
+2025-07-10 10:21:46,685 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:21:47,444 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:21:47,453 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:22:12,657 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\¤å¥ó\\GitHub\\mouseroad\\app.py', reloading
+2025-07-10 10:22:12,841 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:22:13,577 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:22:13,583 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:22:17,625 - INFO - [_internal:_log:97] -  * Detected change in 'C:\\Users\\Angelina\\OneDrive\\¤å¥ó\\GitHub\\mouseroad\\app.py', reloading
+2025-07-10 10:22:17,787 - INFO - [_internal:_log:97] -  * Restarting with stat
+2025-07-10 10:22:18,477 - WARNING - [_internal:_log:97] -  * Debugger is active!
+2025-07-10 10:22:18,480 - INFO - [_internal:_log:97] -  * Debugger PIN: 122-615-525
+2025-07-10 10:22:51,150 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:22:51] "GET / HTTP/1.1" 200 -
+2025-07-10 10:22:54,011 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:22:54] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:23:04,973 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:23:04] "GET / HTTP/1.1" 200 -
+2025-07-10 10:23:16,152 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:23:16] "GET / HTTP/1.1" 200 -
+2025-07-10 10:23:34,570 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:23:34] "GET / HTTP/1.1" 200 -
+2025-07-10 10:30:49,186 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:49] "GET /reminder HTTP/1.1" 200 -
+2025-07-10 10:30:50,201 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:50] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:30:50,214 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:50] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:30:51,918 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:51] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-10 10:30:51,933 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:51] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:30:55,727 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:55] "[32mGET /logout HTTP/1.1[0m" 302 -
+2025-07-10 10:30:55,738 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:55] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:30:59,128 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:30:59] "GET / HTTP/1.1" 200 -
+2025-07-10 10:31:03,893 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:03] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:31:06,456 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:06] "GET /reminder HTTP/1.1" 200 -
+2025-07-10 10:31:07,257 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:07] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:31:07,259 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:07] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:31:12,038 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:12] "GET /reminder HTTP/1.1" 200 -
+2025-07-10 10:31:12,921 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:12] "GET /map HTTP/1.1" 200 -
+2025-07-10 10:31:13,921 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:13] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:31:13,929 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:13] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:31:18,557 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:18] "[32mGET /profile HTTP/1.1[0m" 302 -
+2025-07-10 10:31:18,561 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:18] "GET /login HTTP/1.1" 200 -
+2025-07-10 10:31:51,128 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:51] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-07-10 10:31:51,167 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:51] "GET /profile HTTP/1.1" 200 -
+2025-07-10 10:31:51,196 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:51] "[33mGET /static/uploads/test_avatar_WIN_20240805_19_49_00_Pro.jpg HTTP/1.1[0m" 404 -
+2025-07-10 10:31:51,927 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:51] "GET / HTTP/1.1" 200 -
+2025-07-10 10:31:54,015 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:54] "[32mPOST /clear_schedule HTTP/1.1[0m" 302 -
+2025-07-10 10:31:54,028 - INFO - [_internal:_log:97] - 127.0.0.1 - - [10/Jul/2025 10:31:54] "GET /?cleared=1&cleared_success=1 HTTP/1.1" 200 -
