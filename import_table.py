@@ -12,16 +12,23 @@ logger = logging.getLogger(__name__)
 class CourseManager:
     """课程表管理系统，处理文本保存、解析和JSON导出"""
     
-    def __init__(self, txt_path: str = "YongHuKeBiao.txt", json_path: str = "data.json"):
+    def __init__(self, txt_path: str = "YongHuKeBiao.txt", json_path: str = "data.json", username: str = None):
         """
         初始化课程管理器
         
         Args:
             txt_path: 课表文本文件路径
             json_path: 输出JSON文件路径
+            username: 用户名，如果提供则保存到用户特定文件
         """
         self.txt_path = Path(txt_path)
-        self.json_path = Path(json_path)
+        self.username = username
+        if username:
+            # 如果提供了用户名，使用用户特定的JSON文件
+            self.json_path = Path(f"user_{username}_schedule.json")
+        else:
+            # 否则使用默认的全局JSON文件
+            self.json_path = Path(json_path)
         self.weekday_map = {
             '星期一': 1, '星期二': 2, '星期三': 3, '星期四': 4, 
             '星期五': 5, '星期六': 6, '星期日': 7
@@ -30,7 +37,7 @@ class CourseManager:
             1: '星期一', 2: '星期二', 3: '星期三', 
             4: '星期四', 5: '星期五', 6: '星期六', 7: '星期日'
         }
-        logger.info(f"CourseManager initialized with txt_path: {txt_path}, json_path: {json_path}")
+        logger.info(f"CourseManager initialized with txt_path: {txt_path}, json_path: {self.json_path}, username: {username}")
     
     def save_text_to_file(self, text: str) -> None:
         """
