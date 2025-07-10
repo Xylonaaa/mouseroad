@@ -39,6 +39,14 @@
       color: #e74c3c;
       font-weight: bold;
     }
+    .walking-time {
+      color: #3498db;
+      font-weight: bold;
+    }
+    .departure-time {
+      color: #27ae60;
+      font-weight: bold;
+    }
     #map-container { 
       width: calc(100% - 40px); 
       height: 400px; 
@@ -151,6 +159,12 @@
         <div class="time-info">上课周次：{{ next_course.weeks }}</div>
       {% endif %}
       <div class="location-info">上课地点：{{ next_course.location }}</div>
+      {% if next_course.estimated_walking_time %}
+        <div class="walking-time">预计路程需要：{{ next_course.estimated_walking_time }} 分钟</div>
+      {% endif %}
+      {% if next_course.suggested_departure_time %}
+        <div class="departure-time">建议在 {{ next_course.suggested_departure_time }} 出门</div>
+      {% endif %}
       {% if next_course.minutes_left > 0 %}
         <div class="minutes-left">距离上课还有：{{ next_course.minutes_left }} 分钟</div>
       {% endif %}

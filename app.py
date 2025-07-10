@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from import_table import CourseManager
 import logging
 import re
@@ -38,6 +38,85 @@ try:
 except Exception as e:
     logging.error('读取 location.json 文件时出错: %s', str(e))
 
+
+def calculate_walking_time(location):
+    """
+    根据教室位置计算预计步行时间（分钟）
+    
+    Args:
+        location: 教室位置字符串
+        
+    Returns:
+        预计步行时间（分钟）
+    """
+    # 基础步行时间（分钟）
+    base_walking_time = 5
+    
+    # 根据楼层调整时间
+    floor_adjustment = 0
+    if '楼' in location:
+        # 提取楼层数字
+        import re
+        floor_match = re.search(r'(\d+)楼', location)
+        if floor_match:
+            floor_num = int(floor_match.group(1))
+            # 每层楼增加1分钟
+            floor_adjustment = floor_num - 1
+    
+    # 根据建筑距离调整时间
+    distance_adjustment = 0
+    if '教学楼' in location:
+        distance_adjustment = 3
+    elif '实验楼' in location:
+        distance_adjustment = 5
+    elif '图书馆' in location:
+        distance_adjustment = 8
+    elif '体育馆' in location:
+        distance_adjustment = 10
+    
+    total_time = base_walking_time + floor_adjustment + distance_adjustment
+    
+    # 确保时间在合理范围内（5-20分钟）
+    return max(5, min(20, total_time))
+
+def calculate_suggested_departure_time(course_time, walking_time):
+    """
+    根据课程时间和步行时间计算建议出门时间
+    
+    Args:
+        course_time: 课程时间字符串，格式如 "3-4节"
+        walking_time: 步行时间（分钟）
+        
+    Returns:
+        建议出门时间字符串，格式如 "07:45"
+    """
+    try:
+        # 解析课程节次
+        section_range = course_time.split('节')[0]
+        start_section = int(section_range.split('-')[0])
+        
+        # 节次时间表（与index.html一致）
+        section_times = [
+            '08:00', '08:55', '09:50', '10:45', '11:40',
+            '13:30', '14:25', '15:20', '16:15'
+        ]
+        
+        if 1 <= start_section <= len(section_times):
+            start_time_str = section_times[start_section - 1]
+            start_time = datetime.strptime(start_time_str, '%H:%M')
+            
+            # 建议提前10分钟到达教室，加上步行时间
+            total_advance_time = walking_time + 10
+            
+            # 计算建议出门时间
+            departure_time = start_time - timedelta(minutes=total_advance_time)
+            
+            return departure_time.strftime('%H:%M')
+        else:
+            return "08:00"  # 默认时间
+    except Exception as e:
+        logging.error(f'计算建议出门时间失败: {e}')
+        return "08:00"  # 默认时间
 
 def get_next_course():
     try:
@@ -154,7 +233,16 @@ def map_page():
             if loc['楼名'] == location_name:
                 next_location_address = loc['具体地址']
                 break
-        logging.info('从首页接收到课程信息：%s，地点：%s，地址：%s', course_name, course_location, next_location_address)
+        
+        # 计算预计路程时间和建议出门时间
+        estimated_walking_time = calculate_walking_time(course_location)
+        suggested_departure_time = calculate_suggested_departure_time(course_time, estimated_walking_time)
+        
+        selected_course['estimated_walking_time'] = estimated_walking_time
+        selected_course['suggested_departure_time'] = suggested_departure_time
+        
+        logging.info('从首页接收到课程信息：%s，地点：%s，地址：%s，预计步行时间：%d分钟', 
+                    course_name, course_location, next_location_address, estimated_walking_time)
         return render_template('map.html', next_course=selected_course, next_location_address=next_location_address)
     
     # 如果没有从首页传递参数，则按原来的逻辑查找下一门课程
@@ -214,6 +302,13 @@ def map_page():
                             if loc['楼名'] == location_name:
                                 next_location_address = loc['具体地址']
                                 break
+                        
+                        # 计算预计路程时间和建议出门时间
+                        estimated_walking_time = calculate_walking_time(course['location'])
+                        suggested_departure_time = calculate_suggested_departure_time(course['time'], estimated_walking_time)
+                        
+                        next_course['estimated_walking_time'] = estimated_walking_time
+                        next_course['suggested_departure_time'] = suggested_departure_time
         if next_course:
             logging.info('找到下一门课程：%s，将于 %s 开始，剩余 %d 分钟，地址为 %s', next_course['course'], next_course['time'], next_course['minutes_left'], next_location_address)
         else:
