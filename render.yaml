@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: mouseroad
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:application
+    plan: free
